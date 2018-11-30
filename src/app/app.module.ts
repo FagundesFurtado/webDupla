@@ -45,6 +45,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';;
 import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component'
 import { GetService } from './_services/get.service';
+import { PostService } from './_services/post.service';
 
 
 
@@ -97,6 +98,7 @@ import { GetService } from './_services/get.service';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     GetService,
+    PostService,
     // provider used to create fake backend
     fakeBackendProvider
   ],

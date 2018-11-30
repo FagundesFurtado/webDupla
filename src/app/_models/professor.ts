@@ -1,4 +1,3 @@
 export class Professor {
-  nome : string
-
+  nome: string;
 }
