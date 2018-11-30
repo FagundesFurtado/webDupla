@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="secao"><h3 class="text-center">Professores</h3></div>
+    <div class="form-group row">
+      <label class="col-form-label">Buscar</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="" [(ngModel)]="filter" />
+        </div>
+    </div>
+
+    <table class="table" style="width:100%">
+      <tr>
+
+        <th>Nome</th>
+        <th>Area</th>
+        <th>Vagas</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+      </tr>
+      <tr *ngFor="let i of (professores | buscar: filter | paginate: config)">
+        <td>{{ i.nome }}</td>
+
+        <td>{{ i.curso_area }}</td>
+        <td>{{ i.curso_vagas }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary btn">
+              <fa name="edit" ></fa>
+
+          </button>
+        </td>
+        <td>
+          <button  (click)="deletarCurso(i)"  type="button"  class="btn btn-danger btn" >
+              <fa name="remove" ></fa>
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="has-text-centered">
+      <pagination-controls
+        [id]="config.id"
+        [maxSize]="maxSize"
+        [directionLinks]="directionLinks"
+        [autoHide]="autoHide"
+        [responsive]="responsive"
+        [previousLabel]="labels.previousLabel"
+        [nextLabel]="labels.nextLabel"
+        [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+        [screenReaderPageLabel]="labels.screenReaderPageLabel"
+        [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+        (pageChange)="onPageChange($event)"
+      ></pagination-controls>
+    </div>
+  </div>

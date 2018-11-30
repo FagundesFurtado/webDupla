@@ -1,0 +1,52 @@
+<div class="row">
+
+
+    <div class="col-3">
+
+      <label> Nome:</label>
+      <input class="form-control" type="text" [placeholder]=aluno.nome readonly>
+
+    </div>
+    <div class="col-3">
+
+
+        <label> Email:</label>
+        <input class="form-control" type="text" [placeholder]=aluno.email readonly>
+    </div>
+    <div class="col-3">
+
+        <label> Curso:</label>
+        <input class="form-control" type="text" [placeholder]=aluno.curso readonly>
+    </div>
+    <div class="col-3">
+        <label> Telefone:</label>
+        <input class="form-control" type="text" [placeholder]=aluno.telefone readonly>
+    </div>
+
+
+
+
+  </div>
+
+  <div class="row">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Disciplina</th>
+          <th scope="col">Nota</th>
+          <th scope="col">Faltas</th>
+          <th scope="col">Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of disciplina">
+          <td>{{ i.disciplina }}</td>
+          <td>{{i.nota}} </td>
+          <td>{{i.faltas}}</td>
+          <td> Aprovado </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
