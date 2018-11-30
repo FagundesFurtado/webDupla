@@ -2,11 +2,12 @@ module.exports = function(app) {
 
 	app.get('/postman', function(req,res){
 		res.send(req.query);
+    console.log(req.query);
 	});
 	app.post('/postman', function(req,res){
-    console.log("post")
+
 		var json = req.body;
-    console.log(req.body);
+    console.log(json);
 		res.send(json);
 	});
 }
