@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
-import { Universidade } from '@app/_models/Universidade';
+import { Universidade } from '@app/_models/universidade';
 
 @Component({
   selector: 'app-novo-departamento',
@@ -23,7 +23,7 @@ export class NovoDepartamentoComponent implements OnInit {
     for(let i =0; i< 10; i++){
       let v = new Universidade();
       v.nome = "Universidade "+i;
-      this.universidade.push(v)
+      this.universidade.push(v);
 
     }
 

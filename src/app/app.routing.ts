@@ -27,27 +27,50 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
 
-    { path: 'cursos', component: CursosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'novo-curso', component: NovoCursoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    { path: 'cursos', component: CursosComponent, canActivate: [AuthGuard]  },
+    { path: 'novo-curso', component: NovoCursoComponent, canActivate: [AuthGuard] },
 
-    { path: 'disciplinas', component: DisciplinasComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'nova-disciplina', component: NovaDisciplinaComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'cadastrar-aluno', component: CadastrarAlunoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    { path: 'disciplinas', component: DisciplinasComponent, canActivate: [AuthGuard]},
+    { path: 'nova-disciplina', component: NovaDisciplinaComponent, canActivate: [AuthGuard] },
+    { path: 'cadastrar-aluno', component: CadastrarAlunoComponent, canActivate: [AuthGuard]  },
 
-    { path: 'departamentos', component: DepartamentosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'novo-departamento', component: NovoDepartamentoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-
-
-    { path: 'universidades', component: UniversidadeComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'nova-universidade', component: NovaUniversidadeComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    { path: 'departamentos', component: DepartamentosComponent, canActivate: [AuthGuard] },
+    { path: 'novo-departamento', component: NovoDepartamentoComponent, canActivate: [AuthGuard] },
 
 
-    { path: 'professores', component: ProfessoresComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'novo-professor', component: NovoProfessorComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    { path: 'universidades', component: UniversidadeComponent, canActivate: [AuthGuard]},
+    { path: 'nova-universidade', component: NovaUniversidadeComponent, canActivate: [AuthGuard]  },
 
 
-    { path: 'alunos', component: AlunosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
-    { path: 'novo-aluno', component: NovoAlunoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    { path: 'professores', component: ProfessoresComponent, canActivate: [AuthGuard]   },
+    { path: 'novo-professor', component: NovoProfessorComponent, canActivate: [AuthGuard] },
+
+
+    { path: 'alunos', component: AlunosComponent, canActivate: [AuthGuard]  },
+    { path: 'novo-aluno', component: NovoAlunoComponent, canActivate: [AuthGuard]   },
+
+
+    // { path: 'cursos', component: CursosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    // { path: 'novo-curso', component: NovoCursoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+
+    // { path: 'disciplinas', component: DisciplinasComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    // { path: 'nova-disciplina', component: NovaDisciplinaComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    // { path: 'cadastrar-aluno', component: CadastrarAlunoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+
+    // { path: 'departamentos', component: DepartamentosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    // { path: 'novo-departamento', component: NovoDepartamentoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+
+
+    // { path: 'universidades', component: UniversidadeComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    // { path: 'nova-universidade', component: NovaUniversidadeComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+
+
+    // { path: 'professores', component: ProfessoresComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+    // { path: 'novo-professor', component: NovoProfessorComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
+
+
+    // { path: 'alunos', component: AlunosComponent, canActivate: [AuthGuard]  },
+    // { path: 'novo-aluno', component: NovoAlunoComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },
 
 
     { path: 'alterarNotas', component: MudarNotasComponent },

@@ -5,14 +5,14 @@ import { Universidade } from '@app/_models/universidade';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
-import { GetService } from '@app/_services/get.service';
+import { ServidorService } from '@app/_services/servidor.service';
 
 
 @Component({
   selector: 'app-universidade',
   templateUrl: './universidade.component.html',
   styleUrls: ['./universidade.component.css'],
-  providers: [GetService]
+  providers: [ServidorService]
 })
 export class UniversidadeComponent implements OnInit {
 
@@ -36,7 +36,8 @@ export class UniversidadeComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService, private servico: GetService) { }
+  constructor(private router: Router, private modalService: BsModalService,
+              private toastr: ToastrService, private servidor: ServidorService) { }
 
   modalRef: BsModalRef;
   delete: any;
@@ -45,7 +46,7 @@ export class UniversidadeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.servico.get(new Universidade())
+    this.servidor.get(new Universidade())
       .then((lista: Universidade[]) => {
         this.universidade = lista;
       })

@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { PostService } from '@app/_services/post.service';
+import { ServidorService } from '@app/_services/servidor.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
+import { Universidade } from 'src/app/_models/Universidade';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class NovaUniversidadeComponent implements OnInit {
 
   @ViewChild('formulario') public formulario: NgForm;
 
-  constructor(private post: PostService, private toastr: ToastrService, private router: Router) { }
+  constructor(private servidor: ServidorService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +23,7 @@ export class NovaUniversidadeComponent implements OnInit {
 
   cadastrarUniversidade() {
 
-    this.post.cadastrarUniversidade(this.formulario.value).subscribe(
+    this.servidor.post(this.formulario.value, new Universidade()).subscribe(
       data => {
         const resposta = data.json();
         if (resposta.status === 1) {

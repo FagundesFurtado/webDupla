@@ -44,11 +44,11 @@ import { NovoAlunoComponent } from './_components/conteudo/alunos/novo-aluno/nov
 import { NgxMaskModule } from 'ngx-mask';
 import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';;
 import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component'
-import { GetService } from './_services/get.service';
-import { PostService } from './_services/post.service';
+import { ServidorService } from './_services/servidor.service';
 
-
-
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthService } from './auth/auth.service';
+import { RoleGuardService } from './auth/role-guard.service';
 
 @NgModule({
   imports: [
@@ -97,10 +97,12 @@ import { PostService } from './_services/post.service';
     providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    GetService,
-    PostService,
+    ServidorService,
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+    AuthGuardService,
+    AuthService,
+    RoleGuardService
   ],
   bootstrap: [AppComponent]
 })

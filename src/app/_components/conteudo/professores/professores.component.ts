@@ -60,6 +60,8 @@ export class ProfessoresComponent implements OnInit {
 
   confirm(): void {
 
+
+
     const numero = this.delete.nome;
     const index = this.professores.map(x => {
       return x.nome;

@@ -7,37 +7,37 @@ import { UserService, AuthenticationService } from '@app/_services';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit, OnDestroy {
-    currentUser: User;
-    currentUserSubscription: Subscription;
-    users: User[] = [];
+  currentUser: User;
+  currentUserSubscription: Subscription;
+  users: User[] = [];
 
-    constructor(
-        private authenticationService: AuthenticationService,
-        private userService: UserService
-    ) {
-        this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-            this.currentUser = user;
-        });
-    }
+  constructor(private authenticationService: AuthenticationService,
+    private userService: UserService) {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
 
-    ngOnInit() {
-        this.loadAllUsers();
-    }
+  ngOnInit() {
+    // this.loadAllUsers();
 
-    ngOnDestroy() {
-        // unsubscribe to ensure no memory leaks
-        this.currentUserSubscription.unsubscribe();
-    }
+  }
 
-    deleteUser(id: number) {
-        this.userService.delete(id).pipe(first()).subscribe(() => {
-            this.loadAllUsers()
-        });
-    }
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.currentUserSubscription.unsubscribe();
+  }
 
-    private loadAllUsers() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            this.users = users;
-        });
-    }
+  deleteUser(id: number) {
+    this.userService.delete(id).pipe(first()).subscribe(() => {
+      this.loadAllUsers();
+    });
+  }
+
+  private loadAllUsers() {
+    this.userService.getAll().pipe(first()).subscribe(users => {
+      this.users = users;
+    });
+    console.log(this.users);
+  }
 }
