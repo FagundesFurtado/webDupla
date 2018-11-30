@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
-import { Universidade } from '@app/_models/universidade';
+import { Universidade } from '@app/_models/Universidade';
 
 @Component({
   selector: 'app-novo-departamento',

@@ -2,8 +2,8 @@ var mysql = require('mysql');
 var connMySQL = function(){
 	console.log("Criou conexao ");
 	return mysql.createConnection({
-		host : 'db4free.net',
-		user : 'petequinha',
+		host : '18.228.197.162',
+		user : 'root',
 		password : 'petequinha',
 		database : 'webduplainter'
 

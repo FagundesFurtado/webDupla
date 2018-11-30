@@ -4,7 +4,7 @@ module.exports = function(app) {
 		var varTeste = req.query.teste;
 		var connection = app.config.dbConnection();
 		var generic = new app.app.models.GenericDAO(connection);
-		try { 
+		try {
 				let instituto = {
 					nome: "if sula",
 					endereco: 2,
@@ -17,17 +17,17 @@ module.exports = function(app) {
 					else console.log("ok");
 
 				});
-		
+
 				generic.read('instituto',function(erro,result){
 					console.log(result);
 				});
-		
+
 				generic.find({idEndereco: 2},'endereco',function(erro, result){
 					console.log(">>")
 					if(erro)
 						console.log(erro)
 					else console.log(result);
-					
+
 				});
 				let novoEndereco = {
 					idEndereco: 2,
@@ -53,7 +53,5 @@ module.exports = function(app) {
 		res.send("recebido");
 
 	}) ;
-	app.get('/', function(req,res){
-		res.send("funcionando !");
-	});
+
 }
