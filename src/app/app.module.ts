@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { CommonModule } from '@angular/common';
 
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
@@ -33,6 +34,10 @@ import { BuscarPipe } from '../app/search.pipe';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';;
 import { NovoCursoComponent } from './_components/conteudo/cursos/novo-curso/novo-curso.component';
 import { NovaDisciplinaComponent } from './_components/conteudo/disciplinas/nova-disciplina/nova-disciplina.component'
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
     imports: [
@@ -40,12 +45,15 @@ import { NovaDisciplinaComponent } from './_components/conteudo/disciplinas/nova
         ReactiveFormsModule,
         HttpClientModule,
         routing,
+        CommonModule,
         FormsModule,
         NgxPaginationModule,
         AngularFontAwesomeModule,
+        BrowserAnimationsModule,
         BsDropdownModule.forRoot(),
         TooltipModule.forRoot(),
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        ToastrModule.forRoot()
     ],
     declarations: [
         AppComponent,

@@ -12,6 +12,7 @@ import { DepartamentosComponent } from './_components/conteudo/departamentos/dep
 import { UniversidadeComponent } from './_components/conteudo/universidade/universidade.component';
 import { ProfessoresComponent } from './_components/conteudo/professores/professores.component';
 import { AlunosComponent } from './_components/conteudo/alunos/alunos.component';
+import { NovoCursoComponent } from './_components/conteudo/cursos/novo-curso/novo-curso.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +21,8 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
 
     { path: 'cursos', component: CursosComponent },
+    { path: 'novo-curso', component: NovoCursoComponent },
+
     { path: 'disciplinas', component: DisciplinasComponent },
     { path: 'departamentos', component: DepartamentosComponent },
     { path: 'universidades', component: UniversidadeComponent },
