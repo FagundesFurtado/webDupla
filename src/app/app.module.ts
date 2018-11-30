@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpModule} from '@angular/http';
+
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -42,6 +44,8 @@ import { NovoAlunoComponent } from './_components/conteudo/alunos/novo-aluno/nov
 import { NgxMaskModule } from 'ngx-mask';
 import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';;
 import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component'
+import { GetService } from './_services/get.service';
+
 
 
 
@@ -51,6 +55,7 @@ import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cada
     ReactiveFormsModule,
     HttpClientModule,
     routing,
+    HttpModule,
     CommonModule,
     FormsModule,
     NgxPaginationModule,
@@ -91,7 +96,7 @@ import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cada
     providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+    GetService,
     // provider used to create fake backend
     fakeBackendProvider
   ],

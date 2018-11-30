@@ -5,15 +5,16 @@ import { Universidade } from '@app/_models/universidade';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
+import { GetService } from '@app/_services/get.service';
 
 
 @Component({
   selector: 'app-universidade',
   templateUrl: './universidade.component.html',
-  styleUrls: ['./universidade.component.css']
+  styleUrls: ['./universidade.component.css'],
+  providers: [GetService]
 })
 export class UniversidadeComponent implements OnInit {
-
 
   public filter = '';
   public maxSize = 7;
@@ -25,6 +26,7 @@ export class UniversidadeComponent implements OnInit {
     itemsPerPage: 10,
     currentPage: 1
   };
+
   public labels: any = {
     previousLabel: 'Anterior',
     nextLabel: 'Próxima',
@@ -34,19 +36,23 @@ export class UniversidadeComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
+  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService, private servico: GetService) { }
 
   modalRef: BsModalRef;
-  delete :any
+  delete: any;
 
   public universidade: Universidade[] = [];
 
   ngOnInit() {
-    for(let i=0; i<100; i++){
-      let c = new Universidade();
-      c.nome = 'Universidade '  + i;
-      this.universidade.push(c);
-    }
+
+    this.servico.get(new Universidade())
+      .then((lista: Universidade[]) => {
+        this.universidade = lista;
+      })
+      .catch((param: any) => {
+        console.log('Erro: ' + param);
+      });
+
   }
 
   onPageChange(number: number) {
@@ -56,7 +62,7 @@ export class UniversidadeComponent implements OnInit {
 
   openModal(template: TemplateRef<any>, dele) {
     this.delete = dele;
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {
@@ -72,10 +78,7 @@ export class UniversidadeComponent implements OnInit {
   }
 
   decline(): void {
-
     this.modalRef.hide();
   }
-
-
 
 }
