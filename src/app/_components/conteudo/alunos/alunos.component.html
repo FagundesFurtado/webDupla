@@ -1,52 +1,60 @@
-<div class="row">
-
-
-    <div class="col-3">
-
-      <label> Nome:</label>
-      <input class="form-control" type="text" [placeholder]=aluno.nome readonly>
-
-    </div>
-    <div class="col-3">
-
-
-        <label> Email:</label>
-        <input class="form-control" type="text" [placeholder]=aluno.email readonly>
-    </div>
-    <div class="col-3">
-
-        <label> Curso:</label>
-        <input class="form-control" type="text" [placeholder]=aluno.curso readonly>
-    </div>
-    <div class="col-3">
-        <label> Telefone:</label>
-        <input class="form-control" type="text" [placeholder]=aluno.telefone readonly>
+<div class="container">
+    <div class="secao"><h3 class="text-center">Alunos</h3></div>
+    <div class="form-group row">
+      <label class="col-form-label">Buscar</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="" [(ngModel)]="filter" />
+        </div>
     </div>
 
+    <table class="table" style="width:100%">
+      <tr>
 
+        <th>Nome</th>
+        <th>Area</th>
+        <th>Vagas</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+      </tr>
+      <tr *ngFor="let i of (alunos | buscar: filter | paginate: config)">
+        <td>{{ i.nome }}</td>
 
-
-  </div>
-
-  <div class="row">
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Disciplina</th>
-          <th scope="col">Nota</th>
-          <th scope="col">Faltas</th>
-          <th scope="col">Resultado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let i of disciplina">
-          <td>{{ i.disciplina }}</td>
-          <td>{{i.nota}} </td>
-          <td>{{i.faltas}}</td>
-          <td> Aprovado </td>
-        </tr>
-
-      </tbody>
+        <td>{{ i.curso_area }}</td>
+        <td>{{ i.curso_vagas }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary btn">
+              <fa name="edit" ></fa>
+          </button>
+        </td>
+        <td>
+          <button  (click)="openModal(template,i)"  type="button"  class="btn btn-danger btn" >
+              <fa name="remove" ></fa>
+          </button>
+        </td>
+      </tr>
     </table>
+
+    <div class="has-text-centered">
+      <pagination-controls
+        [id]="config.id"
+        [maxSize]="maxSize"
+        [directionLinks]="directionLinks"
+        [autoHide]="autoHide"
+        [responsive]="responsive"
+        [previousLabel]="labels.previousLabel"
+        [nextLabel]="labels.nextLabel"
+        [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+        [screenReaderPageLabel]="labels.screenReaderPageLabel"
+        [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+        (pageChange)="onPageChange($event)"
+      ></pagination-controls>
+    </div>
   </div>
+
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Deseja realmente excluir?</p>
+      <button type="button" class="btn btn-danger" (click)="confirm()" >Sim</button>
+      <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+    </div>
+  </ng-template>
