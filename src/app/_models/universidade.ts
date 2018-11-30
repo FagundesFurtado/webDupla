@@ -1,5 +1,5 @@
 export class Universidade {
-  nome : string
-  caminho : string;
+  nome: string;
+  caminho: string;
 
 }

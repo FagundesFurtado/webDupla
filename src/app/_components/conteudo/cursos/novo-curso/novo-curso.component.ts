@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Departamento } from '@app/_models/departamento';
 
 
 
@@ -15,7 +16,17 @@ export class NovoCursoComponent implements OnInit {
 
   constructor(private toastr: ToastrService) { }
 
+  departamentos : Departamento[] = []
+
   ngOnInit() {
+
+      for(let i=0; i<10; i++){
+        let d = new Departamento()
+        d.nome="Departamento "+i
+        this.departamentos.push(d)
+
+      }
+
   }
 
 

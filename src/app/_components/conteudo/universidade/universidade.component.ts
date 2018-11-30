@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { Departamento } from '../../../_models/departamento';
 import { Router } from '@angular/router';
 import { Universidade } from '@app/_models/Universidade';
 
@@ -38,7 +37,7 @@ export class UniversidadeComponent implements OnInit {
   ngOnInit() {
     for(let i=0; i<100; i++){
       let c = new Universidade();
-      c.nome = 'Professor '  + i;
+      c.nome = 'Universidade '  + i;
       this.universidade.push(c);
     }
   }

@@ -33,9 +33,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { BuscarPipe } from '../app/search.pipe';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';;
 import { NovoCursoComponent } from './_components/conteudo/cursos/novo-curso/novo-curso.component';
-import { NovaDisciplinaComponent } from './_components/conteudo/disciplinas/nova-disciplina/nova-disciplina.component'
+import { NovaDisciplinaComponent } from './_components/conteudo/disciplinas/nova-disciplina/nova-disciplina.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
+import { NovoDepartamentoComponent } from './_components/conteudo/departamentos/novo-departamento/novo-departamento.component';
+import { NovaUniversidadeComponent } from './_components/conteudo/universidade/nova-universidade/nova-universidade.component';
+import { NovoAlunoComponent } from './_components/conteudo/aluno/novo-aluno/novo-aluno.component';
+import {NgxMaskModule} from 'ngx-mask';
+import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';
 
 
 
@@ -53,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         BsDropdownModule.forRoot(),
         TooltipModule.forRoot(),
         ModalModule.forRoot(),
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        NgxMaskModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -65,6 +71,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MudarNotasComponent,
         PresencaComponent,
         UniversidadeComponent,
+        NovoProfessorComponent,
         DepartamentosComponent ,
         CursosComponent ,
         DisciplinasComponent ,
@@ -72,7 +79,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AlunosComponent,
         BuscarPipe,
         NovoCursoComponent,
-        NovaDisciplinaComponent    ],
+        NovaDisciplinaComponent ,
+        NovoDepartamentoComponent ,
+        NovaUniversidadeComponent ,
+        NovoAlunoComponent],
 
 
     providers: [
