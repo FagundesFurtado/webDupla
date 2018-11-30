@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-novo-aluno',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovoAlunoComponent implements OnInit {
 
+
+  @ViewChild('formulario') public formulario: NgForm;
   constructor() { }
+
+
 
   ngOnInit() {
   }

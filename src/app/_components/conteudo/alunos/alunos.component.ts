@@ -37,8 +37,9 @@ export class AlunosComponent implements OnInit {
   constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
 
   modalRef: BsModalRef;
-  public alunos: Aluno[] = [];
   delete :any
+  public alunos: Aluno[] = [];
+
 
   ngOnInit() {
     for(let i=0; i<100; i++){
@@ -59,14 +60,14 @@ export class AlunosComponent implements OnInit {
 
   confirm(): void {
 
-    var numero = this.delete.nome;
-    var index = this.alunos.map(x => {
+    const numero = this.delete.nome;
+    const index = this.alunos.map(x => {
       return x.nome;
     }).indexOf(numero);
 
     this.alunos.splice(index, 1);
     this.modalRef.hide();
-    this.toastr.success("Removido com sucesso");
+    this.toastr.success('Removido com sucesso');
   }
 
   decline(): void {

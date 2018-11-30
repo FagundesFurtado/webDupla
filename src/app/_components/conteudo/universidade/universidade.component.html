@@ -28,7 +28,7 @@
           </button>
         </td>
         <td>
-          <button  (click)="deletarCurso(i)"  type="button"  class="btn btn-danger btn" >
+          <button  (click)="openModal(template,i)"  type="button"  class="btn btn-danger btn" >
               <fa name="remove" ></fa>
           </button>
         </td>
@@ -51,3 +51,11 @@
       ></pagination-controls>
     </div>
   </div>
+
+  <ng-template #template>
+      <div class="modal-body text-center">
+        <p>Deseja realmente excluir?</p>
+        <button type="button" class="btn btn-danger" (click)="confirm()" >Sim</button>
+        <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+      </div>
+    </ng-template>

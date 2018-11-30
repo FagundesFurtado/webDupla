@@ -17,7 +17,8 @@ import { NovaDisciplinaComponent } from './_components/conteudo/disciplinas/nova
 import { NovoDepartamentoComponent } from './_components/conteudo/departamentos/novo-departamento/novo-departamento.component';
 import { NovaUniversidadeComponent } from './_components/conteudo/universidade/nova-universidade/nova-universidade.component';
 import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';
-import { NovoAlunoComponent } from './_components/conteudo/aluno/novo-aluno/novo-aluno.component';
+import { NovoAlunoComponent } from './_components/conteudo/alunos/novo-aluno/novo-aluno.component';
+import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component';
 
 
 const appRoutes: Routes = [
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
 
     { path: 'disciplinas', component: DisciplinasComponent },
     { path: 'nova-disciplina', component: NovaDisciplinaComponent },
+    { path: 'cadastrar-aluno', component: CadastrarAlunoComponent },
 
     { path: 'departamentos', component: DepartamentosComponent },
     { path: 'novo-departamento', component: NovoDepartamentoComponent },

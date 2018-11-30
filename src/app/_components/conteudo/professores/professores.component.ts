@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 import { Departamento } from '../../../_models/departamento';
 import { Router } from '@angular/router';
 import { Professor } from '@app/_models/professor';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-professores',
@@ -30,7 +33,10 @@ export class ProfessoresComponent implements OnInit {
   };
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
+
+  modalRef: BsModalRef;
+  delete :any
 
   public professores: Professor[] = [];
 
@@ -46,6 +52,28 @@ export class ProfessoresComponent implements OnInit {
     this.config.currentPage = number;
   }
 
+
+  openModal(template: TemplateRef<any>, dele) {
+    this.delete = dele;
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+
+    const numero = this.delete.nome;
+    const index = this.professores.map(x => {
+      return x.nome;
+    }).indexOf(numero);
+
+    this.professores.splice(index, 1);
+    this.modalRef.hide();
+    this.toastr.success('Removido com sucesso');
+  }
+
+  decline(): void {
+
+    this.modalRef.hide();
+  }
 
 
 }
