@@ -1,56 +1,22 @@
+var jwt = require('jsonwebtoken');
+var authConfig = require('../../config/auth');
+
 module.exports = function(app) {
 	app.get('/disciplina', function(req,res){
-
-		var curso = req.query.curso;
-
-		var token = req.query.curso;
-		var varTeste = req.query.teste;
-		var connection = app.config.dbConnection();
-		var genericDAO = new app.app.models.GenericDAO(connection);
-		genericDAO.find({curso: curso},"disciplina",function(error, result){
-			if(error){
-				console.log("erro")
-				console.log(error);
-			}
-			else{
-			res.send(result);
-		}
-	});
-	connection.end();
+		app.app.controller.disciplinas.get(app,req,res);
 	}) ;
+
+
 	app.post('/disciplina', function(req,res){
-		var requisicao = req.body;
-		//res.send(requisicao);
-		var connection = app.config.dbConnection();
-		var genericDAO = new app.app.models.GenericDAO(connection);
-
-		genericDAO.create(requisicao,"disciplina", function(error,result){
-			if(error){
-				console.log("erro")
-				console.log(error);
-			}
-			else{
-				res.send(requisicao);
-			}
-		});
-
-		connection.end();
+		app.app.controller.disciplinas.post(app,req,res);
 	});
 
 	app.delete('/disciplina', function(req, res){
-		var requisicao = req.params.id;
-
-		res.send(requisicao);
-
+		app.app.controller.disciplinas.delete(app,req,res);
 
 	});
 
 	app.put('/disciplina', function(req,res){
-		console.log("put");
-		var requisicao = req.query.id;
-		console.log(requisicao);
-		res.send(requisicao);
-
-	});
-
+		app.app.controller.disciplinas.put(app,req,res);
+});
 }
