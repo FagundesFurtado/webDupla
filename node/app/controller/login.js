@@ -49,7 +49,8 @@ module.exports.register = function(app, req, res){
 
 module.exports.autenticar = function(app, req, res){
       console.log("autenticar");
-  		var {usuario, senha} = req.body;
+  		var usuario = req.body.username;
+			var senha = req.body.password;
   		var connection = app.config.dbConnection();
   		var genericDAO = new app.app.models.GenericDAO(connection);
   		 genericDAO.find({usuario},"usuario",function(error, result){
