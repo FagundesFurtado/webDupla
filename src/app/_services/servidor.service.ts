@@ -10,48 +10,54 @@ export class ServidorService {
 
   constructor(private http: Http) { }
 
+  private site = 'http://localhost:3000/';
 
   private getToken() {
-    const user = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
     let token = JSON.parse(user);
     token = token.token;
     console.log('Token ', token);
     return token;
   }
 
-  public put(id: any): Observable<any> {
-    const url = 'http://localhost:3000/' + id.constructor.name;
+  private getUniversidade() {
+    const user = localStorage.getItem('user');
+    let token = JSON.parse(user);
+    token = token.Universidade;
+    console.log('Universidade ', token);
+    return token;
+  }
+
+  private headers() {
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-      headers.append('Authorization', this.getToken());
-    return this.http.put(url, new RequestOptions({ headers: headers, body: JSON.stringify(id) })).timeout(3000);
+    headers.append('Authorization', this.getToken());
+    headers.append('Universidade', this.getUniversidade());
+    return headers;
+  }
+
+
+  public put(id: any): Observable<any> {
+    const url = this.site + id.constructor.name;
+    return this.http.put(url, new RequestOptions({ headers: this.headers(), body: JSON.stringify(id) })).timeout(3000);
   }
 
   public post(valor: any, tipo: any): Observable<any> {
-    const url = 'http://localhost:3000/' + tipo.constructor.name;
-    const headers: Headers = new Headers();
-    headers.append('Content-type', 'application/json');
-    headers.append('Authorization', this.getToken());
-    return this.http.post(url, JSON.stringify(valor), new RequestOptions({ headers: headers })).timeout(3000);
+    const url = this.site + tipo.constructor.name;
+    return this.http.post(url, JSON.stringify(valor), new RequestOptions({ headers: this.headers() })).timeout(3000);
   }
 
   public get(valor: any): Promise<any[]> {
-
-    const headers: Headers = new Headers();
-    headers.append('Content-type', 'application/json');
-    headers.append('Authorization', this.getToken());
-    return this.http.get('http://localhost:3000/' + valor.constructor.name, new RequestOptions({ headers: headers })).timeout(3000)
+    const url = this.site + valor.constructor.name;
+    return this.http.get(url, new RequestOptions({ headers: this.headers() })).timeout(3000)
       .toPromise().then((resposta: any) => {
         return resposta.json();
       });
   }
 
   public delete(id: any): Observable<any> {
-    const url = 'http://localhost:3000/' + id.constructor.name;
-    const headers: Headers = new Headers();
-    headers.append('Content-type', 'application/json');
-    headers.append('Authorization', this.getToken());
-    return this.http.delete(url, new RequestOptions({ headers: headers, body: JSON.stringify(id) })).timeout(3000);
+    const url = this.site + id.constructor.name;
+    return this.http.delete(url, new RequestOptions({ headers: this.headers(), body: JSON.stringify(id) })).timeout(3000);
   }
 
 

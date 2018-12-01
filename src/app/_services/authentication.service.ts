@@ -38,9 +38,10 @@ export class AuthenticationService {
         if (user && user.token) {
           console.log('Entrou no user');
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('token', JSON.stringify(user));
+          localStorage.setItem('user', JSON.stringify(user));
+
           this.currentUserSubject.next(user);
-        }else{
+        } else {
           console.log('nao entrou no user');
         }
         return user;
