@@ -21,16 +21,6 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    // localStorage.removeItem('currentUser');
-    // this.currentUserSubject.next(null);
-    // const a = new User();
-    // a.firstName = 'Cristiano';
-    // a.lastName = 'Fagundes';
-    // a.id = 1;
-    // a.token = 'tokenSenha';
-    // this.currentUserSubject.next(a);
-    // localStorage.setItem('currentUser', JSON.stringify(a));
-
     return this.http.post<any>('http://localhost:3000/autenticacao', { username, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response

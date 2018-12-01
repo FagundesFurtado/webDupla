@@ -20,19 +20,10 @@ export class ServidorService {
     return token;
   }
 
-  private getUniversidade() {
-    const user = localStorage.getItem('user');
-    let token = JSON.parse(user);
-    token = token.Universidade;
-    console.log('Universidade ', token);
-    return token;
-  }
-
   private headers() {
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
     headers.append('Authorization', this.getToken());
-    headers.append('Universidade', this.getUniversidade());
     return headers;
   }
 
