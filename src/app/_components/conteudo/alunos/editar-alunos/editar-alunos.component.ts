@@ -26,6 +26,7 @@ export class EditarAlunosComponent implements OnInit {
   ngOnInit() {
 
     this.aluno = this.data.objeto;
+    console.log('Aluno ', this.aluno);
 
     this.servidor.get(new Curso()).then(lista => this.cursos = lista);
 

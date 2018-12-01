@@ -22,6 +22,11 @@ import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cada
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 import { RoleGuardService as RoleGuard } from './auth/role-guard.service';
 import { EditarDepartamentoComponent } from './_components/conteudo/departamentos/editar-departamento/editar-departamento.component';
+import { EditarCursosComponent } from './_components/conteudo/cursos/editar-cursos/editar-cursos.component';
+import { EditarAlunosComponent } from './_components/conteudo/alunos/editar-alunos/editar-alunos.component';
+import { EditarUniversidadeComponent } from './_components/conteudo/universidade/editar-universidade/editar-universidade.component';
+import { EditarProfessoresComponent } from './_components/conteudo/professores/editar-professores/editar-professores.component';
+import { EditarDisciplinasComponent } from './_components/conteudo/disciplinas/editar-disciplinas/editar-disciplinas.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -30,26 +35,28 @@ const appRoutes: Routes = [
 
     { path: 'cursos', component: CursosComponent, canActivate: [AuthGuard]  },
     { path: 'novo-curso', component: NovoCursoComponent, canActivate: [AuthGuard] },
+    { path: 'editar-curso', component: EditarCursosComponent, canActivate: [AuthGuard] },
 
     { path: 'disciplinas', component: DisciplinasComponent, canActivate: [AuthGuard]},
     { path: 'nova-disciplina', component: NovaDisciplinaComponent, canActivate: [AuthGuard] },
+    { path: 'editar-disciplina', component: EditarDisciplinasComponent, canActivate: [AuthGuard] },
     { path: 'cadastrar-aluno', component: CadastrarAlunoComponent, canActivate: [AuthGuard]  },
 
     { path: 'departamentos', component: DepartamentosComponent, canActivate: [AuthGuard] },
     { path: 'novo-departamento', component: NovoDepartamentoComponent, canActivate: [AuthGuard] },
     { path: 'editar-departamento', component: EditarDepartamentoComponent, canActivate: [AuthGuard] },
 
-
     { path: 'universidades', component: UniversidadeComponent, canActivate: [AuthGuard]},
     { path: 'nova-universidade', component: NovaUniversidadeComponent, canActivate: [AuthGuard]  },
-
+    { path: 'editar-universidade', component: EditarUniversidadeComponent, canActivate: [AuthGuard]  },
 
     { path: 'professores', component: ProfessoresComponent, canActivate: [AuthGuard]   },
     { path: 'novo-professor', component: NovoProfessorComponent, canActivate: [AuthGuard] },
-
+    { path: 'editar-professor', component: EditarProfessoresComponent, canActivate: [AuthGuard] },
 
     { path: 'alunos', component: AlunosComponent, canActivate: [AuthGuard]  },
     { path: 'novo-aluno', component: NovoAlunoComponent, canActivate: [AuthGuard]   },
+    { path: 'editar-aluno', component: EditarAlunosComponent, canActivate: [AuthGuard]  },
 
 
     // { path: 'cursos', component: CursosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin'}  },

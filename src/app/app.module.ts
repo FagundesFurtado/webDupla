@@ -55,6 +55,7 @@ import { EditarUniversidadeComponent } from './_components/conteudo/universidade
 import { EditarDepartamentoComponent } from './_components/conteudo/departamentos/editar-departamento/editar-departamento.component';
 import { EditarCursosComponent } from './_components/conteudo/cursos/editar-cursos/editar-cursos.component';
 import { DataService } from './_services/data.service';
+import { EditarAlunosComponent } from './_components/conteudo/alunos/editar-alunos/editar-alunos.component';
 
 @NgModule({
   imports: [
@@ -101,6 +102,7 @@ import { DataService } from './_services/data.service';
     EditarDisciplinasComponent,
     EditarUniversidadeComponent ,
     EditarDepartamentoComponent ,
+    EditarAlunosComponent,
     EditarCursosComponent],
 
     providers: [

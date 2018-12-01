@@ -6,6 +6,7 @@ import { Aluno } from '@app/_models/aluno';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '@app/_services/data.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class AlunosComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
+  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService,
+          private data: DataService) { }
 
   modalRef: BsModalRef;
   delete :any
@@ -73,6 +75,13 @@ export class AlunosComponent implements OnInit {
   decline(): void {
 
     this.modalRef.hide();
+  }
+
+  editar(objeto: any) {
+    this.data.objeto = objeto;
+
+    this.router.navigate(['editar-aluno']);
+
   }
 
 }
