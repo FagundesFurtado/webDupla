@@ -10,13 +10,20 @@ export class ServidorService {
 
   constructor(private http: Http) { }
 
+
+  private getToken() {
+    const user = localStorage.getItem('token');
+    let token = JSON.parse(user);
+    token = token.token;
+    console.log('Token ', token);
+    return token;
+  }
+
   public put(id: any): Observable<any> {
     const url = 'http://localhost:3000/' + id.constructor.name;
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-    const token = localStorage.getItem('token');
-
-    headers.append('Authorization', token);
+      headers.append('Authorization', this.getToken());
     return this.http.put(url, new RequestOptions({ headers: headers, body: JSON.stringify(id) })).timeout(3000);
   }
 
@@ -24,8 +31,7 @@ export class ServidorService {
     const url = 'http://localhost:3000/' + tipo.constructor.name;
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-    const token = localStorage.getItem('token');
-    headers.append('Authorization', token);
+    headers.append('Authorization', this.getToken());
     return this.http.post(url, JSON.stringify(valor), new RequestOptions({ headers: headers })).timeout(3000);
   }
 
@@ -33,11 +39,7 @@ export class ServidorService {
 
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-    const user = localStorage.getItem('token');
-    var token = JSON.parse(user);
-    token = token.token;
-    console.log('Token ', token);
-    headers.append('Authorization', token);
+    headers.append('Authorization', this.getToken());
     return this.http.get('http://localhost:3000/' + valor.constructor.name, new RequestOptions({ headers: headers })).timeout(3000)
       .toPromise().then((resposta: any) => {
         return resposta.json();
@@ -48,8 +50,7 @@ export class ServidorService {
     const url = 'http://localhost:3000/' + id.constructor.name;
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-    const token = localStorage.getItem('token');
-    headers.append('Authorization', token);
+    headers.append('Authorization', this.getToken());
     return this.http.delete(url, new RequestOptions({ headers: headers, body: JSON.stringify(id) })).timeout(3000);
   }
 
