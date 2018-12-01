@@ -4,7 +4,8 @@ module.exports.get = function(app, req, res){
 
   auth.middleware(app,req,res, function(id){
 
-    var curso = req.query.curso;
+    // var curso = req.query.curso;
+    var curso = req.header("curso");
     var connection = app.config.dbConnection();
     var genericDAO = new app.app.models.GenericDAO(connection);
     genericDAO.find({curso: curso},"disciplina",function(error, result){
