@@ -60,6 +60,7 @@ module.exports.autenticar = function(app, req, res){
   					return res.status(400).send("error: erro ao encontrar usuario");
 
   				}
+					console.log("usuario \n", result);
   				if(result.length === 0){
   					return res.status(400).send("error: usuario inexistente");
   				}else {
