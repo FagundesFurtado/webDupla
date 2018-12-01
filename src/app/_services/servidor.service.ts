@@ -33,7 +33,9 @@ export class ServidorService {
 
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('token');
+    var token = JSON.parse(user);
+    token = token.token;
     console.log('Token ', token);
     headers.append('Authorization', token);
     return this.http.get('http://localhost:3000/' + valor.constructor.name, new RequestOptions({ headers: headers })).timeout(3000)

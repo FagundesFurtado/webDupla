@@ -3,7 +3,7 @@ module.exports.get = function(app, req, res){
 
 
   auth.middleware(app,req,res, function(id){
-    
+
     var curso = req.query.curso;
     var connection = app.config.dbConnection();
     var genericDAO = new app.app.models.GenericDAO(connection);
