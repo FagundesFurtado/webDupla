@@ -1,7 +1,7 @@
 ﻿export class User {
     id: number;
-    username: string;
-    password: string;
+    usuario: string;
+    senha: string;
     firstName: string;
     lastName: string;
     token: string;

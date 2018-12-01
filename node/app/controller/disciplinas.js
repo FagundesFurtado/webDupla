@@ -1,6 +1,9 @@
 var auth  = require('./auth');
 module.exports.get = function(app, req, res){
-  var token = req.query.token;
+  var token = req.header("Authorization")
+  token = JSON.parse(token);
+  token = token.token;
+
   auth.middleware(app,req,res, token, function(){
     var curso = req.query.curso;
     var connection = app.config.dbConnection();
@@ -21,7 +24,8 @@ module.exports.get = function(app, req, res){
 }
 
 module.exports.post = function(app,req,res){
-  var token = req.query.token;
+  var token = req.get("Authorization")
+  console.log("Token ", token)
   auth.middleware(app,req,res, token, function(){
   var requisicao = req.body;
   var connection = app.config.dbConnection();

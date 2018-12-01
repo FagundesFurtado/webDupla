@@ -21,17 +21,17 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-    const a = new User();
-    a.firstName = 'Cristiano';
-    a.lastName = 'Fagundes';
-    a.id = 1;
-    a.token = 'tokenSenha';
-    this.currentUserSubject.next(a);
-    localStorage.setItem('currentUser', JSON.stringify(a));
+    // localStorage.removeItem('currentUser');
+    // this.currentUserSubject.next(null);
+    // const a = new User();
+    // a.firstName = 'Cristiano';
+    // a.lastName = 'Fagundes';
+    // a.id = 1;
+    // a.token = 'tokenSenha';
+    // this.currentUserSubject.next(a);
+    // localStorage.setItem('currentUser', JSON.stringify(a));
 
-    return this.http.post<any>('http://localhost:3000/postman', { username, password })
+    return this.http.post<any>('http://localhost:3000/autenticacao', { username, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         console.log(user);
@@ -40,6 +40,8 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', JSON.stringify(user));
           this.currentUserSubject.next(user);
+        }else{
+          console.log('nao entrou no user');
         }
         return user;
       })).timeout(3000);

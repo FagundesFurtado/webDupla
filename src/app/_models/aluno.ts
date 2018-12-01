@@ -10,6 +10,4 @@ export class Aluno {
     bolsista: boolean;
     semestre: number;
     anoinicio: number;
-
-
 }
