@@ -1,0 +1,67 @@
+<div class="card">
+  <h3 class="text-center">Editar disciplina</h3>
+
+  <form #formulario="ngForm" (ngSubmit)="cadastrarDisciplina()">
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Disciplina:</label>
+      <div class="col-10">
+        <input type="text" required class="form-control" name="nome" placeholder="Nome da disciplina" [(ngModel)]="disciplina.nome">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Descrição:</label>
+      <div class="col-10">
+        <input type="text" required class="form-control" name="descricao" placeholder="Descrição" [(ngModel)]="disciplina.descricao">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Carga horária:</label>
+      <div class="col-10">
+        <input type="number" required class="form-control" name="carga-horaria" [(ngModel)]="disciplina.carga-horaria">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Curso:</label>
+      <div class="col-10">
+        <select required class="form-control" name="curso" [(ngModel)]="disciplina.curso">
+          <option *ngFor="let item of cursos"> {{item.nome}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Horário:</label>
+      <div class="col-10">
+        <input type="number" required class="form-control" name="horario" [(ngModel)]="disciplina.horario">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Sala:</label>
+      <div class="col-10">
+        <input type="number" required class="form-control" name="sala" [(ngModel)]="disciplina.sala">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Professor:</label>
+      <div class="col-10">
+        <select required class="form-control" name="professor" [(ngModel)]="disciplina.professor">
+          <option *ngFor="let item of professores" [value]="item.nome"> {{item.nome}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse">
+      <input type="reset" class="btn btn-outline-danger" value="Resetar">
+      <ng-container *ngIf="formulario.valid; else elseTemplate">
+        <input type="submit" class="btn btn-outline-primary" value="Editar">
+      </ng-container>
+      <ng-template #elseTemplate>
+        <input type="submit" disabled class="btn btn-outline-primary" value="Editar">
+      </ng-template>
+    </div>
+  </form>
+
+
+</div>

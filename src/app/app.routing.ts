@@ -21,6 +21,7 @@ import { NovoAlunoComponent } from './_components/conteudo/alunos/novo-aluno/nov
 import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component';
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 import { RoleGuardService as RoleGuard } from './auth/role-guard.service';
+import { EditarDepartamentoComponent } from './_components/conteudo/departamentos/editar-departamento/editar-departamento.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
 
     { path: 'departamentos', component: DepartamentosComponent, canActivate: [AuthGuard] },
     { path: 'novo-departamento', component: NovoDepartamentoComponent, canActivate: [AuthGuard] },
+    { path: 'editar-departamento', component: EditarDepartamentoComponent, canActivate: [AuthGuard] },
 
 
     { path: 'universidades', component: UniversidadeComponent, canActivate: [AuthGuard]},

@@ -1,11 +1,12 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 import { Departamento } from '../../../_models/departamento';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Disciplina } from '@app/_models/disciplina';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '@app/_services/data.service';
 
 
 @Component({
@@ -35,17 +36,22 @@ export class DepartamentosComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+    private modalService: BsModalService, private toastr: ToastrService,
+    private data: DataService) { }
 
   modalRef: BsModalRef;
-  delete :any
+  delete: any;
+  message: string;
 
   public departamento: Departamento[] = [];
 
   ngOnInit() {
-    for(let i=0; i<100; i++){
+    for (let i = 0; i < 100; i++) {
       let c = new Departamento();
-      c.nome = 'Departamento '  + i;
+      c.nome = 'Departamento ' + i;
+      c.telefone = '(35) 37222-222';
+      c.universidade = 'Universidade 7';
       this.departamento.push(c);
     }
   }
@@ -57,7 +63,7 @@ export class DepartamentosComponent implements OnInit {
 
   openModal(template: TemplateRef<any>, dele) {
     this.delete = dele;
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {
@@ -77,6 +83,12 @@ export class DepartamentosComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  editar(objeto: Departamento) {
+
+    this.data.objeto = objeto;
+
+      this.router.navigate(['/editar-departamento']);
+  }
 
 
 

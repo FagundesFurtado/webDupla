@@ -42,13 +42,19 @@ import { NovoDepartamentoComponent } from './_components/conteudo/departamentos/
 import { NovaUniversidadeComponent } from './_components/conteudo/universidade/nova-universidade/nova-universidade.component';
 import { NovoAlunoComponent } from './_components/conteudo/alunos/novo-aluno/novo-aluno.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';;
-import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component'
+import { NovoProfessorComponent } from './_components/conteudo/professores/novo-professor/novo-professor.component';
+import { CadastrarAlunoComponent } from './_components/conteudo/disciplinas/cadastrar-aluno/cadastrar-aluno.component';
 import { ServidorService } from './_services/servidor.service';
 
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { RoleGuardService } from './auth/role-guard.service';
+import { EditarProfessoresComponent } from './_components/conteudo/professores/editar-professores/editar-professores.component';
+import { EditarDisciplinasComponent } from './_components/conteudo/disciplinas/editar-disciplinas/editar-disciplinas.component';
+import { EditarUniversidadeComponent } from './_components/conteudo/universidade/editar-universidade/editar-universidade.component';
+import { EditarDepartamentoComponent } from './_components/conteudo/departamentos/editar-departamento/editar-departamento.component';
+import { EditarCursosComponent } from './_components/conteudo/cursos/editar-cursos/editar-cursos.component';
+import { DataService } from './_services/data.service';
 
 @NgModule({
   imports: [
@@ -90,9 +96,12 @@ import { RoleGuardService } from './auth/role-guard.service';
     NovoDepartamentoComponent,
     NovaUniversidadeComponent,
     NovoAlunoComponent,
-    CadastrarAlunoComponent
-
-  ],
+    CadastrarAlunoComponent,
+    EditarProfessoresComponent,
+    EditarDisciplinasComponent,
+    EditarUniversidadeComponent ,
+    EditarDepartamentoComponent ,
+    EditarCursosComponent],
 
     providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -102,6 +111,7 @@ import { RoleGuardService } from './auth/role-guard.service';
     fakeBackendProvider,
     AuthGuardService,
     AuthService,
+    DataService,
     RoleGuardService
   ],
   bootstrap: [AppComponent]

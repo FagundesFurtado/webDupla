@@ -1,5 +1,7 @@
 export class Departamento {
-  nome : string
-  caminho : string;
+  nome: string;
+  caminho: string;
+  telefone: string;
+  universidade: string;
 
 }

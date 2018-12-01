@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ServidorService } from '@app/_services/servidor.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
-import { Universidade } from 'src/app/_models/Universidade';
+import { Universidade } from 'src/app/_models/universidade';
 
 
 @Component({
