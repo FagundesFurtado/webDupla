@@ -1,6 +1,3 @@
-var jwt = require('jsonwebtoken');
-var authConfig = require('../../config/auth');
-
 module.exports = function(app) {
 	app.get('/disciplina', function(req,res){
 		app.app.controller.disciplinas.get(app,req,res);

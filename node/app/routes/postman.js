@@ -1,9 +1,7 @@
 module.exports = function(app) {
 
 	app.get('/postman', function(req,res){
-		app.app.controller.auth.middleware(app,req,res, token,function(){
 
-		})
 		res.send(req.query);
     console.log(req.query);
 	});
@@ -11,6 +9,12 @@ module.exports = function(app) {
 
 		var json = req.body;
     console.log(json);
+		res.send(json);
+	});
+	app.put('/postman', function(req,res){
+
+		var json = req.body;
+		console.log(json);
 		res.send(json);
 	});
 }

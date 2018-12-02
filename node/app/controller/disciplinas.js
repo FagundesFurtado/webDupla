@@ -1,26 +1,31 @@
 var auth  = require('./auth');
+
+
 module.exports.get = function(app, req, res){
 
 
-  auth.middleware(app,req,res, function(id){
+  auth.middleware(app,req,res, function(campoToken){
 
     // var curso = req.query.curso;
-    auth.verify(app,req,res, function(id){
-      console.log("id - ",id);
+      let id = campoToken.id;
+      var universidade = campoToken.universidade;
       var curso = req.header("curso");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
-      genericDAO.find({curso: curso},"disciplina",function(error, result){
+      //genericDAO.find({curso: curso},"disciplina",function(error, result){
+    //  genericDAO.read("disciplina",function(error, result){
+    let query = "call buscaDisciplinas("+String(universidade)+")";
+
+    genericDAO.execute(query,function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
         }
         else{
-        res.send(result);
+        res.send(result[0]);
       }
       });
       connection.end();
-      })
 
 
     })
@@ -53,13 +58,12 @@ module.exports.post = function(app,req,res){
 
 module.exports.delete = function(app,req,res){
 
-  auth.middleware(app,req,res, function(){
-  var requisicao = req.query;
+  auth.middleware(app,req,res, function(campoToken){
+    var disciplina = req.header("disciplina");
   var connection = app.config.dbConnection();
   var genericDAO = new app.app.models.GenericDAO(connection);
-  var idDisciplina = requisicao.disciplina;
-  console.log("disciplina a ser apagada "+idDisciplina);
-  genericDAO.delete({idDisciplina: requisicao.disciplina},"disciplina", function(error, result){
+
+  genericDAO.delete({idDisciplina: disciplina},"disciplina", function(error, result){
     if(error){
       console.log("erro")
       console.log(error);
@@ -72,14 +76,14 @@ module.exports.delete = function(app,req,res){
 
 
 
-  res.send(requisicao);
+  //res.send(requisicao);
   connection.end();
 });
 }
 
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
-  var requisicao = req.query;
+  var requisicao = req.body;
   var connection = app.config.dbConnection();
   var genericDAO = new app.app.models.GenericDAO(connection);
   console.log("update");
