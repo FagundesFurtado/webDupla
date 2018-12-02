@@ -7,21 +7,23 @@ import decode from 'jwt-decode';
 export class RoleGuardService implements CanActivate {
 
 
-  constructor(public auth: AuthService, public router: Router) {}
+  constructor(public auth: AuthService, public router: Router) { }
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
     const expectedRole = route.data.expectedRole;
     const user = localStorage.getItem('user');
-    const token = JSON.parse(user).token;
-    const tokenPayload = decode(token);
+    if (user) {
+      const token = JSON.parse(user).token;
+      const tokenPayload = decode(token);
 
-    if (
-      !this.auth.isAuthenticated() ||
-      tokenPayload.role !== expectedRole
-    ) {
-      this.router.navigate(['login']);
-      return false;
+      if (!this.auth.isAuthenticated() || tokenPayload.role !== expectedRole) {
+        this.router.navigate(['login']);
+        return false;
+      }
+      return true;
+
     }
-    return true;
+    this.router.navigate(['login']);
+    return false;
   }
 }

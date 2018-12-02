@@ -12,7 +12,7 @@
         <a class="nav-link" routerLink="/" routerLinkActive="active">Início </a>
       </li>
 
-      <ng-container *ngIf="admin">
+      <ng-container *ngIf="admin>0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
@@ -76,13 +76,13 @@
           </div>
         </li>
       </ng-container>
-      <ng-container *ngIf="professor">
+      <ng-container *ngIf="professor>0">
         <li class="nav-item">
           <a class="nav-link" routerLink="editar-notas" routerLinkActive="active">Editar Notas </a>
         </li>
       </ng-container>
 
-      <ng-container *ngIf="aluno">
+      <ng-container *ngIf="aluno>0">
         <li class="nav-item">
           <a class="nav-link" routerLink="notas" routerLinkActive="active">Visualizar Notas </a>
         </li>

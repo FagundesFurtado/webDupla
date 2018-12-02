@@ -1,7 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { Curso } from '../../../_models/curso';
 import { Router } from '@angular/router';
+import { AlunoNota } from '@app/_models/alunoNota';
+import { Aluno } from '@app/_models/aluno';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,11 +11,11 @@ import { ServidorService } from '@app/_services/servidor.service';
 
 
 @Component({
-  selector: 'app-cursos',
-  templateUrl: './cursos.component.html',
-  styleUrls: ['./cursos.component.css']
+  selector: 'app-alunos',
+  templateUrl: './alunos.component.html',
+  styleUrls: ['./alunos.component.css']
 })
-export class CursosComponent implements OnInit {
+export class AlunosComponent implements OnInit {
 
   public filter = '';
   public maxSize = 7;
@@ -35,17 +36,16 @@ export class CursosComponent implements OnInit {
   };
 
 
-  constructor(private router: Router,
-    private modalService: BsModalService,
-    private toastr: ToastrService, private data: DataService,
-    private servidor: ServidorService) { }
+  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService,
+          private data: DataService, private servidor: ServidorService) { }
 
-  public curso: Curso[] = [];
-  delete: any;s
   modalRef: BsModalRef;
+  delete: any;
+  public alunos: Aluno[] = [];
+
 
   ngOnInit() {
-   this.servidor.get(new Curso()).then(lista => this.curso = lista);
+    this.servidor.get(new Aluno()).then(lista => this.alunos = lista);
   }
 
   onPageChange(number: number) {
@@ -54,30 +54,30 @@ export class CursosComponent implements OnInit {
 
   openModal(template: TemplateRef<any>, dele) {
     this.delete = dele;
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   confirm(): void {
 
     const numero = this.delete.nome;
-    const index = this.curso.map(x => {
+    const index = this.alunos.map(x => {
       return x.nome;
     }).indexOf(numero);
 
-    this.curso.splice(index, 1);
+    this.alunos.splice(index, 1);
     this.modalRef.hide();
     this.toastr.success('Removido com sucesso');
   }
 
   decline(): void {
-
     this.modalRef.hide();
   }
 
   editar(objeto: any) {
-      this.data.objeto = objeto;
-      this.router.navigate(['editar-curso']);
-  }
+    this.data.objeto = objeto;
 
+    this.router.navigate(['editar-aluno']);
+
+  }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { Curso } from '../../../_models/curso';
-import { Router } from '@angular/router';
+import { Departamento } from '../../../../_models/departamento';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Disciplina } from '@app/_models/disciplina';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -10,13 +10,13 @@ import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
 
 
-
 @Component({
-  selector: 'app-disciplinas',
-  templateUrl: './disciplinas.component.html',
-  styleUrls: ['./disciplinas.component.css']
+  selector: 'app-departamentos',
+  templateUrl: './departamentos.component.html',
+  styleUrls: ['./departamentos.component.css']
 })
-export class DisciplinasComponent implements OnInit {
+export class DepartamentosComponent implements OnInit {
+
 
   public filter = '';
   public maxSize = 7;
@@ -37,25 +37,25 @@ export class DisciplinasComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService,
-    private toastr: ToastrService, private data: DataService, private servidor: ServidorService) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+    private modalService: BsModalService, private toastr: ToastrService,
+    private data: DataService, private servidor: ServidorService) { }
 
   modalRef: BsModalRef;
   delete: any;
-  public disciplinas: Disciplina[] = [];
+  message: string;
+
+  public departamento: Departamento[] = [];
 
   ngOnInit() {
-
-    this.servidor.get(new Disciplina()).then(lista => { this.disciplinas = lista;
-
-     console.log(lista);
-    });
+    this.servidor.get(new Departamento()).then(lista => this.departamento = lista);
 
   }
 
   onPageChange(number: number) {
     this.config.currentPage = number;
   }
+
 
   openModal(template: TemplateRef<any>, dele) {
     this.delete = dele;
@@ -65,22 +65,25 @@ export class DisciplinasComponent implements OnInit {
   confirm(): void {
 
     const numero = this.delete.nome;
-    const index = this.disciplinas.map(x => {
+    const index = this.departamento.map(x => {
       return x.nome;
     }).indexOf(numero);
 
-    this.disciplinas.splice(index, 1);
+    this.departamento.splice(index, 1);
     this.modalRef.hide();
     this.toastr.success('Removido com sucesso');
   }
 
   decline(): void {
+
     this.modalRef.hide();
   }
 
-  editar(objeto: any) {
-    this.data = objeto;
-    this.router.navigate(['editar-disciplina']);
+  editar(objeto: Departamento) {
+
+    this.data.objeto = objeto;
+
+      this.router.navigate(['/editar-departamento']);
   }
 
 

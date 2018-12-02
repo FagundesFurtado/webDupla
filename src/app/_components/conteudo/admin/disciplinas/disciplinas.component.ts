@@ -1,19 +1,22 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { Departamento } from '../../../_models/departamento';
+import { Curso } from '../../../../_models/curso';
 import { Router } from '@angular/router';
-import { Professor } from '@app/_models/professor';
+import { Disciplina } from '@app/_models/disciplina';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
 
+
+
 @Component({
-  selector: 'app-professores',
-  templateUrl: './professores.component.html',
-  styleUrls: ['./professores.component.css']
+  selector: 'app-disciplinas',
+  templateUrl: './disciplinas.component.html',
+  styleUrls: ['./disciplinas.component.css']
 })
-export class ProfessoresComponent implements OnInit {
+export class DisciplinasComponent implements OnInit {
 
   public filter = '';
   public maxSize = 7;
@@ -34,44 +37,52 @@ export class ProfessoresComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService,
-              private servidor: ServidorService) { }
+  constructor(private router: Router, private modalService: BsModalService,
+    private toastr: ToastrService, private data: DataService, private servidor: ServidorService) { }
 
   modalRef: BsModalRef;
   delete: any;
-
-  public professores: Professor[];
+  public disciplinas: Disciplina[] = [];
 
   ngOnInit() {
-    this.servidor.get(new Professor).then(lista => this.professores = lista);
+
+    this.servidor.get(new Disciplina()).then(lista => { this.disciplinas = lista;
+
+     console.log(lista);
+    });
+
   }
 
   onPageChange(number: number) {
     this.config.currentPage = number;
   }
 
-
   openModal(template: TemplateRef<any>, dele) {
     this.delete = dele;
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {
 
     const numero = this.delete.nome;
-    const index = this.professores.map(x => {
+    const index = this.disciplinas.map(x => {
       return x.nome;
     }).indexOf(numero);
 
-    this.professores.splice(index, 1);
+    this.disciplinas.splice(index, 1);
     this.modalRef.hide();
     this.toastr.success('Removido com sucesso');
   }
 
   decline(): void {
-
     this.modalRef.hide();
   }
+
+  editar(objeto: any) {
+    this.data = objeto;
+    this.router.navigate(['editar-disciplina']);
+  }
+
 
 
 }

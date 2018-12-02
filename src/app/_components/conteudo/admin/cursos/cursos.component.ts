@@ -1,20 +1,20 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
+import { Curso } from '../../../../_models/curso';
 import { Router } from '@angular/router';
-import { AlunoNota } from '@app/_models/alunoNota';
-import { Aluno } from '@app/_models/aluno';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '@app/_services/data.service';
+import { ServidorService } from '@app/_services/servidor.service';
 
 
 @Component({
-  selector: 'app-alunos',
-  templateUrl: './alunos.component.html',
-  styleUrls: ['./alunos.component.css']
+  selector: 'app-cursos',
+  templateUrl: './cursos.component.html',
+  styleUrls: ['./cursos.component.css']
 })
-export class AlunosComponent implements OnInit {
+export class CursosComponent implements OnInit {
 
   public filter = '';
   public maxSize = 7;
@@ -35,20 +35,17 @@ export class AlunosComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService,
-          private data: DataService) { }
+  constructor(private router: Router,
+    private modalService: BsModalService,
+    private toastr: ToastrService, private data: DataService,
+    private servidor: ServidorService) { }
 
+  public curso: Curso[] = [];
+  delete: any;s
   modalRef: BsModalRef;
-  delete :any
-  public alunos: Aluno[] = [];
-
 
   ngOnInit() {
-    for(let i=0; i<100; i++){
-      let c = new Aluno();
-      c.nome = 'Alunos '  + i;
-      this.alunos.push(c);
-    }
+   this.servidor.get(new Curso()).then(lista => this.curso = lista);
   }
 
   onPageChange(number: number) {
@@ -57,17 +54,17 @@ export class AlunosComponent implements OnInit {
 
   openModal(template: TemplateRef<any>, dele) {
     this.delete = dele;
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {
 
     const numero = this.delete.nome;
-    const index = this.alunos.map(x => {
+    const index = this.curso.map(x => {
       return x.nome;
     }).indexOf(numero);
 
-    this.alunos.splice(index, 1);
+    this.curso.splice(index, 1);
     this.modalRef.hide();
     this.toastr.success('Removido com sucesso');
   }
@@ -78,10 +75,9 @@ export class AlunosComponent implements OnInit {
   }
 
   editar(objeto: any) {
-    this.data.objeto = objeto;
-
-    this.router.navigate(['editar-aluno']);
-
+      this.data.objeto = objeto;
+      this.router.navigate(['editar-curso']);
   }
+
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Curso } from '@app/_models/curso';
 import { Professor } from '@app/_models/professor';
+import { ServidorService } from '@app/_services/servidor.service';
 
 @Component({
   selector: 'app-nova-disciplina',
@@ -10,7 +11,7 @@ import { Professor } from '@app/_models/professor';
 })
 export class NovaDisciplinaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servidor: ServidorService) { }
 
   @ViewChild('formulario') public formulario: NgForm;
 
@@ -20,26 +21,16 @@ export class NovaDisciplinaComponent implements OnInit {
 
 
   ngOnInit() {
+    this.servidor.get(new Curso()).then(lista => this.cursos = lista);
+    this.servidor.get(new Professor()).then(lista => this.professores = lista);
 
-    for(let i =0; i<10; i++){
-      let c = new Curso()
-      let p = new Professor()
-
-      c.nome = "Curso "+i
-      p.nome = "Professor " +i
-
-      this.cursos.push(c)
-      this.professores.push(p)
-
-
-    }
 
 
   }
 
-  cadastrarDisciplina(){
+  cadastrarDisciplina() {
 
-    console.log(this.formulario.value)
+    console.log(this.formulario.value);
 
   }
 

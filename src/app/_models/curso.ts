@@ -1,4 +1,3 @@
 export class Curso {
-  nome : string
-
+  nome: string;
 }

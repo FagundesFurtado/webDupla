@@ -25,7 +25,7 @@ export class TopoComponent {
       this.currentUser = x;
 
       if (this.currentUser) {
-        const tokenPayload = decode(this.currentUser.token);
+        const tokenPayload = decode(this.currentUser.autenticacao);
         console.log(tokenPayload);
         this.admin = tokenPayload.admin;
         this.professor = tokenPayload.professor;

@@ -4,5 +4,6 @@
     senha: string;
     firstName: string;
     lastName: string;
-    token: string;
+    autenticacao: string;
+    autorizacao: string;
 }

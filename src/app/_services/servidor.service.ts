@@ -12,19 +12,26 @@ export class ServidorService {
 
   private site = 'http://localhost:3000/';
 
-  private getToken() {
+  private getAutorizacao() {
     const user = localStorage.getItem('user');
     let token = JSON.parse(user);
-    token = token.token;
-    console.log('Token ', token);
+    token = token.autorizacao;
+    console.log('Auth ', token);
     return token;
   }
 
+  private getAutenticacao() {
+    const user = localStorage.getItem('user');
+    let token = JSON.parse(user);
+    token = token.autenticacao;
+    console.log('Auten ', token);
+    return token;
+  }
   private headers() {
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
-    headers.append('Authorization', this.getToken());
-    headers.append('Curso', '1');
+    headers.append('Autenticacao', this.getAutenticacao());
+    headers.append('Autorizacao', this.getAutorizacao());
     return headers;
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Departamento } from '@app/_models/departamento';
+import { ServidorService } from '@app/_services/servidor.service';
 
 
 
@@ -12,33 +13,27 @@ import { Departamento } from '@app/_models/departamento';
 })
 export class NovoCursoComponent implements OnInit {
 
-  @ViewChild('formulario') public formulario: NgForm
+  @ViewChild('formulario') public formulario: NgForm;
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService, private servidor: ServidorService) { }
 
-  departamentos : Departamento[] = []
+  departamentos: Departamento[] = [];
 
   ngOnInit() {
-
-      for(let i=0; i<10; i++){
-        let d = new Departamento()
-        d.nome="Departamento "+i
-        this.departamentos.push(d)
-
-      }
+    this.servidor.get(new Departamento()).then(lista => this.departamentos = lista);
 
   }
 
 
-  cadastrarCurso(){
+  cadastrarCurso() {
 
 
   }
 
 
-  teste(){
+  teste() {
     console.log("toast")
-      this.toastr.success("Voltou")
+    this.toastr.success("Voltou")
 
 
   }

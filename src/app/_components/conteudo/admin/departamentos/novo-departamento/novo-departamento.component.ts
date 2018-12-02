@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { Universidade } from '@app/_models/universidade';
+import { ServidorService } from '@app/_services/servidor.service';
 
 @Component({
   selector: 'app-novo-departamento',
@@ -16,17 +17,10 @@ export class NovoDepartamentoComponent implements OnInit {
 
   universidade: Universidade[] = []
 
-  constructor() { }
+  constructor(private servidor: ServidorService) { }
 
   ngOnInit() {
-
-    for(let i =0; i< 10; i++){
-      let v = new Universidade();
-      v.nome = "Universidade "+i;
-      this.universidade.push(v);
-
-    }
-
+      this.servidor.get(new Universidade()).then(lista => this.universidade = lista);
   }
 
 }

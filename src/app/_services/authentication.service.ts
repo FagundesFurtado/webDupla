@@ -27,6 +27,7 @@ export class AuthenticationService {
         if (user && user.token) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSubject.next(user);
+          console.log(user);
         } else {
           console.log('nao entrou no user');
         }
