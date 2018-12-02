@@ -15,7 +15,7 @@ export class ServidorService {
   private getAutorizacao() {
     const user = localStorage.getItem('user');
     let token = JSON.parse(user);
-    token = token.autorizacao;
+    token = token.Autorizacao;
     console.log('Auth ', token);
     return token;
   }
@@ -23,7 +23,7 @@ export class ServidorService {
   private getAutenticacao() {
     const user = localStorage.getItem('user');
     let token = JSON.parse(user);
-    token = token.autenticacao;
+    token = token.Autenticacao;
     console.log('Auten ', token);
     return token;
   }

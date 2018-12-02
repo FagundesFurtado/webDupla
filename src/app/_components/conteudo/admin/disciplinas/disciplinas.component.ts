@@ -49,7 +49,16 @@ export class DisciplinasComponent implements OnInit {
     this.servidor.get(new Disciplina()).then(lista => { this.disciplinas = lista;
 
      console.log(lista);
+
     });
+
+    const teste = new Disciplina();
+    teste.curso = 'Curso Nome';
+
+    const a = Object.keys(teste);
+    console.log('teste ', a);
+
+
 
   }
 

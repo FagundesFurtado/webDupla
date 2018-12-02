@@ -23,8 +23,8 @@ export class AuthenticationService {
   login(username: string, password: string) {
     return this.http.post<any>('http://localhost:3000/autenticacao', { username, password })
       .pipe(map(user => {
-
-        if (user && user.token) {
+        console.log(user);
+        if (user && user.Autenticacao) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSubject.next(user);
           console.log(user);

@@ -5,5 +5,6 @@ export class Disciplina {
     descricao: string;
     curso: string;
     horario: string;
-    sala: number;
+    sala: string;
+    professor: string;
 }

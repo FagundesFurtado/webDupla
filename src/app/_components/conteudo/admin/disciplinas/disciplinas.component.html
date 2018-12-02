@@ -11,16 +11,22 @@
       <tr>
 
         <th>Nome</th>
-        <th>Area</th>
-        <th>Vagas</th>
+        <th>Descrição</th>
+        <th>Carga Horária</th>
+        <th>Sala</th>
+        <th>Curso</th>
+        <th>Professor</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
       <tr *ngFor="let i of (disciplinas | buscar: filter | paginate: config)">
         <td>{{ i.nome }}</td>
 
-        <td>{{ i.curso_area }}</td>
-        <td>{{ i.curso_vagas }}</td>
+        <td>{{ i.descricao }}</td>
+        <td>{{ i.carga_horaria }}</td>
+        <td>{{ i.sala }}</td>
+        <td>{{ i.curso }}</td>
+        <td>{{ i.professor }}</td>
         <td>
           <button type="button" class="btn btn-outline-primary btn">
               <fa name="edit" ></fa>
