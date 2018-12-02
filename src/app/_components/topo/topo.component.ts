@@ -23,10 +23,10 @@ export class TopoComponent {
 
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
-
+      console.log('Topo x ', x);
       if (this.currentUser) {
-        const tokenPayload = decode(this.currentUser.autenticacao);
-        console.log(tokenPayload);
+        const tokenPayload = decode(this.currentUser.Autenticacao);
+        console.log('Topo ' , tokenPayload);
         this.admin = tokenPayload.admin;
         this.professor = tokenPayload.professor;
         this.aluno = tokenPayload.aluno;

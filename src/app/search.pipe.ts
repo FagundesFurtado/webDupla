@@ -10,7 +10,17 @@ export class BuscarPipe {
       return value;
     }
     return value.filter(
-      item => -1 < item.nome.toLowerCase().indexOf(q.toLowerCase())
+      item => {
+        const atr = Object.keys(item);
+        for (let i = 0; i < atr.length; i++) {
+          const variavel = JSON.stringify(item[atr[i]]);
+          if (variavel.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+            i = atr.length;
+            return true;
+          }
+        }
+        return false;
+      }
     );
   }
 }

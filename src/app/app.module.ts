@@ -2,11 +2,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 
-// used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+
 
 import { FormsModule } from '@angular/forms';
 
@@ -15,7 +14,7 @@ import { routing } from './app.routing';
 import { CommonModule } from '@angular/common';
 
 import { AlertComponent } from './_components';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -101,8 +100,8 @@ import { NotasAlunoComponent } from './_components/conteudo/aluno/notas-aluno/no
     CadastrarAlunoComponent,
     EditarProfessoresComponent,
     EditarDisciplinasComponent,
-    EditarUniversidadeComponent ,
-    EditarDepartamentoComponent ,
+    EditarUniversidadeComponent,
+    EditarDepartamentoComponent,
     EditarAlunosComponent,
     EditarCursosComponent,
     NotasAlunoComponent,
@@ -110,12 +109,9 @@ import { NotasAlunoComponent } from './_components/conteudo/aluno/notas-aluno/no
   ],
 
 
-    providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  providers: [
+
     ServidorService,
-    // provider used to create fake backend
-    fakeBackendProvider,
     AuthGuardService,
     AuthService,
     DataService,
