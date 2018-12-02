@@ -6,6 +6,7 @@ import { Professor } from '@app/_models/professor';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
+import { ServidorService } from '@app/_services/servidor.service';
 
 @Component({
   selector: 'app-professores',
@@ -33,19 +34,16 @@ export class ProfessoresComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
+  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService,
+              private servidor: ServidorService) { }
 
   modalRef: BsModalRef;
-  delete :any
+  delete: any;
 
-  public professores: Professor[] = [];
+  public professores: Professor[];
 
   ngOnInit() {
-    for(let i=0; i<100; i++){
-      let c = new Professor();
-      c.nome = 'Professor '  + i;
-      this.professores.push(c);
-    }
+    this.servidor.get(new Professor).then(lista => this.professores = lista);
   }
 
   onPageChange(number: number) {
@@ -59,8 +57,6 @@ export class ProfessoresComponent implements OnInit {
   }
 
   confirm(): void {
-
-
 
     const numero = this.delete.nome;
     const index = this.professores.map(x => {

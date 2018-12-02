@@ -1,79 +1,98 @@
-
 <!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary" *ngIf="currentUser">-->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" *ngIf="currentUser">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li  class="nav-item">
-        <a class="nav-link" routerLink="/" routerLinkActive="active">Início <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Universidades
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="nova-universidade" > Nova Universidade </a>
-          <a class="dropdown-item" routerLink="universidades"> Lista Universidade</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="departamento" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Departamentos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="departamento">
-          <a class="dropdown-item"  routerLink="novo-departamento" >Novo Departamento</a>
-          <a class="dropdown-item"  routerLink="departamentos">Lista Departamento</a>
-
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"  id="cursos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Cursos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="cursos">
-          <a class="dropdown-item" routerLink="novo-curso"  >Novo Curso</a>
-          <a class="dropdown-item" routerLink="cursos" >Lista Cursos</a>
-
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="disciplinas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Disciplinas
-        </a>
-        <div class="dropdown-menu" aria-labelledby="disciplinas">
-          <a class="dropdown-item"  routerLink="nova-disciplina" >Nova Disciplina</a>
-          <a class="dropdown-item" routerLink="disciplinas" >Lista Disciplinas</a>
-          <a class="dropdown-item" routerLink="cadastrar-aluno" >Cadastrar aluno em disciplina</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="professores" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Professores
-        </a>
-        <div class="dropdown-menu" aria-labelledby="professores">
-          <a class="dropdown-item" routerLink="novo-professor"  >Novo Professor</a>
-          <a class="dropdown-item"  routerLink="professores" >Lista Professores</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="alunos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Alunos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="alunos">
-          <a class="dropdown-item"  routerLink="novo-aluno" >Novo Aluno</a>
-          <a class="dropdown-item"  routerLink="alunos" >Lista Alunos</a>
-
-        </div>
-      </li>
       <li class="nav-item">
-        <a class="nav-link"  (click)="logout()">Sair</a>
+        <a class="nav-link" routerLink="/" routerLinkActive="active">Início </a>
       </li>
+
+      <ng-container *ngIf="admin">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Universidades
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="nova-universidade"> Nova Universidade </a>
+            <a class="dropdown-item" routerLink="universidades"> Lista Universidade</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="departamento" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Departamentos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="departamento">
+            <a class="dropdown-item" routerLink="novo-departamento">Novo Departamento</a>
+            <a class="dropdown-item" routerLink="departamentos">Lista Departamento</a>
+
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="cursos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cursos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="cursos">
+            <a class="dropdown-item" routerLink="novo-curso">Novo Curso</a>
+            <a class="dropdown-item" routerLink="cursos">Lista Cursos</a>
+
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="disciplinas" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Disciplinas
+          </a>
+          <div class="dropdown-menu" aria-labelledby="disciplinas">
+            <a class="dropdown-item" routerLink="nova-disciplina">Nova Disciplina</a>
+            <a class="dropdown-item" routerLink="disciplinas">Lista Disciplinas</a>
+            <a class="dropdown-item" routerLink="cadastrar-aluno">Cadastrar aluno em disciplina</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="professores" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Professores
+          </a>
+          <div class="dropdown-menu" aria-labelledby="professores">
+            <a class="dropdown-item" routerLink="novo-professor">Novo Professor</a>
+            <a class="dropdown-item" routerLink="professores">Lista Professores</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="alunos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Alunos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alunos">
+            <a class="dropdown-item" routerLink="novo-aluno">Novo Aluno</a>
+            <a class="dropdown-item" routerLink="alunos">Lista Alunos</a>
+
+          </div>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="professor">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="editar-notas" routerLinkActive="active">Editar Notas </a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="aluno">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="notas" routerLinkActive="active">Visualizar Notas </a>
+        </li>
+      </ng-container>
+
+
+
     </ul>
+    <form class="form-inline">
+      <a class="nav-link" (click)="logout()">Sair</a>
+    </form>
   </div>
 </nav>
-
-

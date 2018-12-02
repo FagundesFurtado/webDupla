@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Disciplina</th>
+        <th scope="col">Prova 1</th>
+        <th scope="col">Prova 2</th>
+        <th scope="col">Trabalho</th>
+        <th scope="col">Total</th>
+        <th scope="col">Situação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of notas">
+        <th>{{i.disciplina}}</th>
+        <td>{{i.prova1}}</td>
+        <td>{{i.prova2}}</td>
+        <td>{{i.trabalho}}</td>
+        <td>{{i.total}}</td>
+        <td>{{i.situacao}}</td>
+      </tr>
+
+    </tbody>
+  </table>

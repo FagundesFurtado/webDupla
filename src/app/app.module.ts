@@ -55,7 +55,8 @@ import { EditarUniversidadeComponent } from './_components/conteudo/universidade
 import { EditarDepartamentoComponent } from './_components/conteudo/departamentos/editar-departamento/editar-departamento.component';
 import { EditarCursosComponent } from './_components/conteudo/cursos/editar-cursos/editar-cursos.component';
 import { DataService } from './_services/data.service';
-import { EditarAlunosComponent } from './_components/conteudo/alunos/editar-alunos/editar-alunos.component';
+import { EditarAlunosComponent } from './_components/conteudo/alunos/editar-alunos/editar-alunos.component';;
+import { NotasAlunoComponent } from './_components/conteudo/aluno/notas-aluno/notas-aluno.component'
 
 @NgModule({
   imports: [
@@ -103,7 +104,11 @@ import { EditarAlunosComponent } from './_components/conteudo/alunos/editar-alun
     EditarUniversidadeComponent ,
     EditarDepartamentoComponent ,
     EditarAlunosComponent,
-    EditarCursosComponent],
+    EditarCursosComponent,
+    NotasAlunoComponent,
+
+  ],
+
 
     providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

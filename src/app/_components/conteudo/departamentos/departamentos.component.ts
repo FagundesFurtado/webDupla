@@ -7,6 +7,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '@app/_services/data.service';
+import { ServidorService } from '@app/_services/servidor.service';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class DepartamentosComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute,
     private modalService: BsModalService, private toastr: ToastrService,
-    private data: DataService) { }
+    private data: DataService, private servidor: ServidorService) { }
 
   modalRef: BsModalRef;
   delete: any;
@@ -47,13 +48,8 @@ export class DepartamentosComponent implements OnInit {
   public departamento: Departamento[] = [];
 
   ngOnInit() {
-    for (let i = 0; i < 100; i++) {
-      let c = new Departamento();
-      c.nome = 'Departamento ' + i;
-      c.telefone = '(35) 37222-222';
-      c.universidade = 'Universidade 7';
-      this.departamento.push(c);
-    }
+    this.servidor.get(new Departamento()).then(lista => this.departamento = lista);
+
   }
 
   onPageChange(number: number) {

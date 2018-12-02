@@ -6,6 +6,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '@app/_services/data.service';
+import { ServidorService } from '@app/_services/servidor.service';
 
 
 @Component({
@@ -36,18 +37,15 @@ export class CursosComponent implements OnInit {
 
   constructor(private router: Router,
     private modalService: BsModalService,
-    private toastr: ToastrService, private data: DataService) { }
+    private toastr: ToastrService, private data: DataService,
+    private servidor: ServidorService) { }
 
   public curso: Curso[] = [];
-  delete: any
+  delete: any;s
   modalRef: BsModalRef;
 
   ngOnInit() {
-    for (let i = 0; i < 100; i++) {
-      let c = new Curso()
-      c.nome = "Curso " + i;
-      this.curso.push(c)
-    }
+   this.servidor.get(new Curso()).then(lista => this.curso = lista);
   }
 
   onPageChange(number: number) {

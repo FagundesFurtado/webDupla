@@ -3,7 +3,7 @@ import 'rxjs/add/operator/timeout';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Aluno } from 'src/app/_models/aluno';
-
+import decode from 'jwt-decode';
 
 @Injectable()
 export class ServidorService {
@@ -24,6 +24,7 @@ export class ServidorService {
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
     headers.append('Authorization', this.getToken());
+    headers.append('Curso', '1');
     return headers;
   }
 
@@ -40,6 +41,7 @@ export class ServidorService {
 
   public get(valor: any): Promise<any[]> {
     const url = this.site + valor.constructor.name;
+
     return this.http.get(url, new RequestOptions({ headers: this.headers() })).timeout(3000)
       .toPromise().then((resposta: any) => {
         return resposta.json();
