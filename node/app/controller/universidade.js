@@ -13,16 +13,8 @@ module.exports.get = function(app, req, res){
       var id = campoToken.id;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
-      var universidade = 0;
-      genericDAO.find({id},"usuario",function(error, result){
-        if(error){
-          console.log("erro")
-            return res.status(400).send({error: 'Falha ao encontrar usuario'});
-        }
+      var universidade = campoToken.universidade;
 
-        universidade = result[0].universidade;
-
-        console.log(result[0].universidade);
       // })
       // .then( async function(id){
 
@@ -37,7 +29,7 @@ module.exports.get = function(app, req, res){
             res.send(result1);
         });
 
-      });
+
     }, function(token){
       console.log(token);
     });
@@ -50,7 +42,6 @@ module.exports.get = function(app, req, res){
 module.exports.post = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
-    console.log("campotoken ",campoToken);
     auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
   var requisicao = req.body;
   var connection = app.config.dbConnection();

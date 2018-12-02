@@ -5,7 +5,7 @@ module.exports.get = function(app, req, res){
 
 
   auth.middleware(app,req,res, function(campoToken){
-
+      console.log(campoToken)
     // var curso = req.query.curso;
       let id = campoToken.id;
       var universidade = campoToken.universidade;

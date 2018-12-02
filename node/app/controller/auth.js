@@ -43,3 +43,12 @@ module.exports.verificaAdmin = function(app, req, res, token, funcaoAdmin, funca
 	funcaoNormal(token);
 	}
 }
+module.exports.verificacao = function(app, req, res, condicao, token, funcaoAdmin, funcaoNormal){
+	if(condicao){
+
+		funcaoAdmin(token);
+	}
+	else {
+	funcaoNormal(token);
+	}
+}
