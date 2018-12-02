@@ -5,22 +5,41 @@ module.exports.get = function(app, req, res){
   auth.middleware(app,req,res, function(id){
 
     // var curso = req.query.curso;
-    auth.verify(app,req,res, function(id){
+    auth.verify(app,req,res,function(id){
       console.log("id - ",id);
-      var curso = req.header("curso");
-      var connection = app.config.dbConnection();
+        var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
-      genericDAO.find({curso: curso},"disciplina",function(error, result){
+      var universidade = 0;
+      genericDAO.find({id},"usuario",function(error, result){
         if(error){
           console.log("erro")
-          console.log(error);
+            return res.status(400).send({error: 'Falha ao encontrar usuario'});
         }
-        else{
-        res.send(result);
-      }
+
+        universidade = result[0].universidade;
+
+        console.log(result[0].universidade);
+      // })
+      // .then( async function(id){
+
+       genericDAO.find({idInstituto: universidade}, "instituto", function(err,result1){
+
+            if(err)
+            {
+              console.log("erro busca universidade");
+              console.log(err);
+              return res.status(400).send({error: 'Falha ao encontrar universidade'});
+            }
+            res.send(result1);
+        });
+
       });
-      connection.end();
-      })
+
+
+
+
+    //  connection.end();
+  });
 
 
     })

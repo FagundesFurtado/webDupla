@@ -97,3 +97,13 @@ module.exports.autenticar = function(app, req, res){
 
 
 }
+
+module.exports.logout = function(app,req,res){
+
+	req.session.destroy(function(err){
+		if(err){
+			return res.status(400).send({logout: 0});
+		}
+		res.send({logout: 1});
+	})
+}
