@@ -36,7 +36,9 @@ module.exports.get = function(app, req, res){
 
 module.exports.post = function(app,req,res){
 
-  auth.middleware(app,req,res, function(){
+  auth.middleware(app,req,res, function(campoToken){
+    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
+
   var requisicao = req.body;
   var connection = app.config.dbConnection();
   var genericDAO = new app.app.models.GenericDAO(connection);
@@ -52,6 +54,9 @@ module.exports.post = function(app,req,res){
   });
 
   connection.end();
+}, function(){
+  res.status(400).send({admin: 0});
+});
 });
 }
 

@@ -1,7 +1,11 @@
 var auth  = require('./auth');
+
 module.exports.get = function(app, req, res){
 
+/*
+  CONDICOES?
 
+*/
   auth.middleware(app,req,res, function(campoToken){
     auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
 
@@ -46,6 +50,7 @@ module.exports.get = function(app, req, res){
 module.exports.post = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
+    console.log("campotoken ",campoToken);
     auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
   var requisicao = req.body;
   var connection = app.config.dbConnection();
@@ -63,13 +68,17 @@ module.exports.post = function(app,req,res){
 
   connection.end();
 });
+}, function(){
+  return res.status(400).send({admin: 0});
 });
 }
 
 
 module.exports.delete = function(app,req,res){
 
-  auth.middleware(app,req,res, function(){
+  auth.middleware(app,req,res, function(campoToken){
+    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
+
     var universidade = req.header("universidade");
 
   var connection = app.config.dbConnection();
@@ -85,11 +94,16 @@ module.exports.delete = function(app,req,res){
 
   });
   connection.end();
+}, function(){
+  return res.status(400).send({admin: 0});
+});
 });
 }
 
 module.exports.put = function(app,req,res){
-  auth.middleware(app,req,res, function(){
+  auth.middleware(app,req,res, function(campoToken){
+    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
+
   var requisicao = req.body;
   var connection = app.config.dbConnection();
   var genericDAO = new app.app.models.GenericDAO(connection);
@@ -104,6 +118,8 @@ module.exports.put = function(app,req,res){
   });
 
   connection.end();
-
+}, function(){
+  return res.status(400).send({admin: 0});
+});
 });
 }
