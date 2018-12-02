@@ -65,9 +65,17 @@ module.exports.autenticar = function(app, req, res){
   					return res.status(400).send("error: usuario inexistente");
   				}else {
   					result = result[0];
+				
   					if(crypto.createHash('md5').update(senha).digest('hex') === result.senha){
   						senha = undefined;
-  						let token = generationToken({id: result.id});
+							var campoToken = {
+								id: result.id,
+								admin: result.admin,
+								universidade: result.universidade,
+								professor: result.professor,
+								aluno: result.aluno,
+							};
+  						let token = generationToken(campoToken);
   						result.token = token;
 
   						genericDAO.update(result,{id: result.id},"usuario",function(error,result){

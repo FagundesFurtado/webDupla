@@ -3,9 +3,7 @@ var jwt = require('jsonwebtoken');
 var session = require('express-session');
 
 var authConfig = require('../../config/auth');
-function generationToken(params = {}){
-	return 	 jwt.sign(params,authConfig.secret, {expiresIn: 86400,});
-}
+
 module.exports = function(app) {
 
 
