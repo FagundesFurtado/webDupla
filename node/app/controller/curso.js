@@ -8,36 +8,35 @@ module.exports.get = function(app, req, res){
     console.log(campoToken)
     // var curso = req.query.curso;
 
-    auth.verificaAdmin(app,req,res, campoToken, function(campoToken){
-      let id = campoToken.id;
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+        let id = campoToken.id;
       var universidade = campoToken.universidade;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
-      //genericDAO.find({curso: curso},"disciplina",function(error, result){
-      //  genericDAO.read("disciplina",function(error, result){
-        let query = "call buscaDisciplinas("+String(universidade)+")";
-        genericDAO.execute(query,function(error, result){
-          if(error){
-            console.log("erro")
-            console.log(error);
-          }
-          else{
+
+        var query = "select distinct curso.* from departamento, instituto, curso where  curso.departamento = departamento.idDepartamento and departamento.instituto = "+String(universidade);
+       genericDAO.execute(query,function(error, result){
+         console.log("busca departamento");
+         if(error){
+          console.log("erro")
+          console.log(error);
+        }
+        else{
 
 
-           return  res.send(result[0]);
-         }
-       });
-        connection.end();
+         return  res.send(result);
+       }
 
 
-      }, function(){
-        console.log("nao admin")
-      });
-    auth.verificacao(app,req,res,campoToken.professor > 0, campoToken, function(campoToken){
+   });
+       connection.end();
 
-    }, function(campoToken){
-      console.log("nao admin")
-    })
+
+     }, function(){
+
+      res.send({permissao: 0});
+    });
+
 
   })
 
@@ -54,7 +53,7 @@ module.exports.post = function(app,req,res){
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-      genericDAO.create(requisicao,"disciplina", function(error,result){
+      genericDAO.create(requisicao,"curso", function(error,result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -65,7 +64,8 @@ module.exports.post = function(app,req,res){
       });
 
       connection.end();
-    }, function(){
+    },
+    function(){
       res.status(400).send({admin: 0});
     });
   });
@@ -76,11 +76,11 @@ module.exports.delete = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
     auth.verificaAdmin(app,req,res, function(campoToken){
-      var disciplina = req.header("disciplina");
+      var curso = req.header("curso");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-      genericDAO.delete({idDisciplina: disciplina},"disciplina", function(error, result){
+      genericDAO.delete({idCurso: curso},"professor", function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -95,24 +95,31 @@ module.exports.delete = function(app,req,res){
 
   //res.send(requisicao);
   connection.end();
+},
+function(campoToken){
+  res.status(400).send({admin: 0})
 });
   });
 }
 
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
-    var requisicao = req.body;
-    var connection = app.config.dbConnection();
-    var genericDAO = new app.app.models.GenericDAO(connection);
-    console.log("update");
-    genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
-      if(error){
-        console.log("erro")
-        console.log(error);
-      }
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+      var requisicao = req.body;
+      var connection = app.config.dbConnection();
+      var genericDAO = new app.app.models.GenericDAO(connection);
+      console.log("update");
+      genericDAO.update(requisicao, {idCurso: requisicao.idCurso},"curso",function(error, result){
+        if(error){
+          console.log("erro")
+          console.log(error);
+        }
+      });
+
+      connection.end();
+    },
+    function(campoToken){
+
     });
-
-    connection.end();
-
   });
 }

@@ -8,36 +8,35 @@ module.exports.get = function(app, req, res){
     console.log(campoToken)
     // var curso = req.query.curso;
 
-    auth.verificaAdmin(app,req,res, campoToken, function(campoToken){
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+      console.log(campoToken);
+
       let id = campoToken.id;
       var universidade = campoToken.universidade;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
+      console.log("peteca");
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
-      //  genericDAO.read("disciplina",function(error, result){
-        let query = "call buscaDisciplinas("+String(universidade)+")";
-        genericDAO.execute(query,function(error, result){
-          if(error){
-            console.log("erro")
-            console.log(error);
-          }
-          else{
+       genericDAO.find({instituto: universidade},"departamento",function(error, result){
+         console.log("busca departamento");
+         if(error){
+          console.log("erro")
+          console.log(error);
+        }
+        else{
 
 
-           return  res.send(result[0]);
-         }
-       });
-        connection.end();
+         return  res.send(result);
+       }
+     });
+       connection.end();
 
 
-      }, function(){
-        console.log("nao admin")
-      });
-    auth.verificacao(app,req,res,campoToken.professor > 0, campoToken, function(campoToken){
+     }, function(){
+    
+      res.send({permissao: 0});
+    });
 
-    }, function(campoToken){
-      console.log("nao admin")
-    })
 
   })
 
@@ -54,7 +53,7 @@ module.exports.post = function(app,req,res){
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-      genericDAO.create(requisicao,"disciplina", function(error,result){
+      genericDAO.create(requisicao,"departamento", function(error,result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -65,7 +64,8 @@ module.exports.post = function(app,req,res){
       });
 
       connection.end();
-    }, function(){
+    },
+    function(){
       res.status(400).send({admin: 0});
     });
   });
@@ -76,11 +76,11 @@ module.exports.delete = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
     auth.verificaAdmin(app,req,res, function(campoToken){
-      var disciplina = req.header("disciplina");
+      var departamento = req.header("departamento");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-      genericDAO.delete({idDisciplina: disciplina},"disciplina", function(error, result){
+      genericDAO.delete({idDepartamento: departamento},"departamento", function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -95,24 +95,31 @@ module.exports.delete = function(app,req,res){
 
   //res.send(requisicao);
   connection.end();
+},
+function(campoToken){
+  res.status(400).send({admin: 0})
 });
   });
 }
 
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
-    var requisicao = req.body;
-    var connection = app.config.dbConnection();
-    var genericDAO = new app.app.models.GenericDAO(connection);
-    console.log("update");
-    genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
-      if(error){
-        console.log("erro")
-        console.log(error);
-      }
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+      var requisicao = req.body;
+      var connection = app.config.dbConnection();
+      var genericDAO = new app.app.models.GenericDAO(connection);
+      console.log("update");
+      genericDAO.update(requisicao, {idDepartamento: requisicao.idDepartamento},"departamento",function(error, result){
+        if(error){
+          console.log("erro")
+          console.log(error);
+        }
+      });
+
+      connection.end();
+    },
+    function(campoToken){
+
     });
-
-    connection.end();
-
   });
 }

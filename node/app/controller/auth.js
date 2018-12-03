@@ -44,6 +44,7 @@ module.exports.verificaAdmin = function(app, req, res, token, funcaoAdmin, funca
 	}
 }
 module.exports.verificacao = function(app, req, res, condicao, token, funcaoAdmin, funcaoNormal){
+	console.log("verifica")
 	if(condicao){
 
 		funcaoAdmin(token);

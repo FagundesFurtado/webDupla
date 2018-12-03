@@ -1,48 +1,44 @@
 var auth  = require('./auth');
+
+
 module.exports.get = function(app, req, res){
 
 
-  auth.middleware(app,req,res, function(id){
-
+  auth.middleware(app,req,res, function(campoToken){
+    console.log(campoToken)
     // var curso = req.query.curso;
-    auth.verify(app,req,res,function(id){
-      console.log("id - ",id);
-        var connection = app.config.dbConnection();
+
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+        let id = campoToken.id;
+      var universidade = campoToken.universidade;
+      var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
-      var universidade = 0;
-      genericDAO.find({id},"usuario",function(error, result){
-        if(error){
+
+        var query = "select distinct professor.* from departamento, instituto, professor where  professor.departamento = departamento.idDepartamento and departamento.instituto = "+String(universidade);
+       genericDAO.execute(query,function(error, result){
+         console.log("busca departamento");
+         if(error){
           console.log("erro")
-            return res.status(400).send({error: 'Falha ao encontrar usuario'});
+          console.log(error);
         }
-
-        universidade = result[0].universidade;
-
-        console.log(result[0].universidade);
-      // })
-      // .then( async function(id){
-
-       genericDAO.find({idInstituto: universidade}, "instituto", function(err,result1){
-
-            if(err)
-            {
-              console.log("erro busca universidade");
-              console.log(err);
-              return res.status(400).send({error: 'Falha ao encontrar universidade'});
-            }
-            res.send(result1);
-        });
-
-      });
+        else{
 
 
+         return  res.send(result);
+       }
 
 
-    //  connection.end();
-  });
+   });
+       connection.end();
 
 
-    })
+     }, function(){
+
+      res.send({permissao: 0});
+    });
+
+
+  })
 
 
 
@@ -50,66 +46,80 @@ module.exports.get = function(app, req, res){
 
 module.exports.post = function(app,req,res){
 
-  auth.middleware(app,req,res, function(){
-  var requisicao = req.body;
-  var connection = app.config.dbConnection();
-  var genericDAO = new app.app.models.GenericDAO(connection);
+  auth.middleware(app,req,res, function(campoToken){
+    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
 
-  genericDAO.create(requisicao,"disciplina", function(error,result){
-    if(error){
-      console.log("erro")
-      console.log(error);
-    }
-    else{
-      res.send(requisicao);
-    }
+      var requisicao = req.body;
+      var connection = app.config.dbConnection();
+      var genericDAO = new app.app.models.GenericDAO(connection);
+
+      genericDAO.create(requisicao,"professor", function(error,result){
+        if(error){
+          console.log("erro")
+          console.log(error);
+        }
+        else{
+          res.send(requisicao);
+        }
+      });
+
+      connection.end();
+    },
+    function(){
+      res.status(400).send({admin: 0});
+    });
   });
-
-  connection.end();
-});
 }
 
 
 module.exports.delete = function(app,req,res){
 
-  auth.middleware(app,req,res, function(){
-  var requisicao = req.query;
-  var connection = app.config.dbConnection();
-  var genericDAO = new app.app.models.GenericDAO(connection);
-  var idDisciplina = requisicao.disciplina;
-  console.log("disciplina a ser apagada "+idDisciplina);
-  genericDAO.delete({idDisciplina: requisicao.disciplina},"disciplina", function(error, result){
-    if(error){
-      console.log("erro")
-      console.log(error);
-    }
-    else {
-      res.send({deletado: 1})
-    }
+  auth.middleware(app,req,res, function(campoToken){
+    auth.verificaAdmin(app,req,res, function(campoToken){
+      var professor = req.header("professor");
+      var connection = app.config.dbConnection();
+      var genericDAO = new app.app.models.GenericDAO(connection);
 
-  });
+      genericDAO.delete({idProfessor: professor},"professor", function(error, result){
+        if(error){
+          console.log("erro")
+          console.log(error);
+        }
+        else {
+          res.send({deletado: 1})
+        }
+
+      });
 
 
 
-  res.send(requisicao);
+  //res.send(requisicao);
   connection.end();
+},
+function(campoToken){
+  res.status(400).send({admin: 0})
 });
+  });
 }
 
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
-  var requisicao = req.query;
-  var connection = app.config.dbConnection();
-  var genericDAO = new app.app.models.GenericDAO(connection);
-  console.log("update");
-  genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
-    if(error){
-      console.log("erro")
-      console.log(error);
-    }
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+      var requisicao = req.body;
+      var connection = app.config.dbConnection();
+      var genericDAO = new app.app.models.GenericDAO(connection);
+      console.log("update");
+      genericDAO.update(requisicao, {idProfessor: requisicao.idProfessor},"professor",function(error, result){
+        if(error){
+          console.log("erro")
+          console.log(error);
+        }
+      });
+
+      connection.end();
+    },
+    function(campoToken){
+
+    });
   });
-
-  connection.end();
-
-});
 }
