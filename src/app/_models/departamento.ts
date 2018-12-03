@@ -1,7 +1,7 @@
 export class Departamento {
+  idDepartamento: number;
   nome: string;
-  caminho: string;
   telefone: string;
-  universidade: string;
+  instituto: string;
 
 }

@@ -1,3 +1,71 @@
-<p>
-  editar-professores works!
-</p>
+<div class="card">
+  <h3 class="text-center">Novo professor</h3>
+
+  <form #formulario="ngForm" (ngSubmit)="cadastrarProfessor()">
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Curso:</label>
+      <div class="col-10">
+        <input type="text" required class="form-control" name="nome" placeholder="Nome do professor" [(ngModel)]="professor.nome">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Email:</label>
+      <div class="col-10">
+        <input type="email" class="form-control" required name="email" placeholder="Email" [(ngModel)]="professor.email">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Endereço:</label>
+      <div class="col-10">
+        <input type="text" required class="form-control" name="endereco" placeholder="Endereço" ngModel>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Telefone:</label>
+      <div class="col-10">
+        <input type="text" class="form-control" mask="(00) 0000-0000" required name="telefone" placeholder="Telefone"
+        [(ngModel)]="professor.telefone">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Departamento:</label>
+      <div class="col-10">
+        <select required class="form-control" name="departamento" [(ngModel)]="professor.departamento">
+          <option *ngFor="let item of departamento"> {{item.nome}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Opções:</label>
+      <div class="col-10">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="admin" ngModel>
+          <label class="form-check-label" >Administrador</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="coordernador" [(ngModel)]="professor.coordernador">
+          <label class="form-check-label">Coordenador</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse">
+      <input type="reset" class="btn btn-outline-danger" value="Resetar">
+      <ng-container *ngIf="formulario.valid; else elseTemplate">
+        <input type="submit" class="btn btn-outline-primary" value="Cadastrar">
+      </ng-container>
+      <ng-template #elseTemplate>
+        <input type="submit" disabled class="btn btn-outline-primary" value="Cadastrar">
+      </ng-template>
+    </div>
+  </form>
+
+
+</div>

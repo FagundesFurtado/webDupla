@@ -88,7 +88,7 @@ export class DisciplinasComponent implements OnInit {
   }
 
   editar(objeto: any) {
-    this.data = objeto;
+    this.data.objeto = objeto;
     this.router.navigate(['editar-disciplina']);
   }
 

@@ -11,18 +11,30 @@
       <tr>
 
         <th>Nome</th>
-        <th>Area</th>
-        <th>Vagas</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Departamento</th>
+        <th>Coordenador</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
       <tr *ngFor="let i of (professores | buscar: filter | paginate: config)">
         <td>{{ i.nome }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.telefone }}</td>
+        <td>{{ i.departamento }}</td>
 
-        <td>{{ i.curso_area }}</td>
-        <td>{{ i.curso_vagas }}</td>
+        <ng-container *ngIf="i.coordenador; else  elseTemplate">
+          <td>Sim</td>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <td>Não</td>
+        </ng-template>
+
+
+
         <td>
-          <button type="button" class="btn btn-outline-primary btn">
+          <button type="button" (click)="editar(i)"  class="btn btn-outline-primary btn">
               <fa name="edit" ></fa>
 
           </button>

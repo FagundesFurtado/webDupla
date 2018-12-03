@@ -41,7 +41,7 @@ export class CursosComponent implements OnInit {
     private servidor: ServidorService) { }
 
   public curso: Curso[] = [];
-  delete: any;s
+  delete: any;
   modalRef: BsModalRef;
 
   ngOnInit() {

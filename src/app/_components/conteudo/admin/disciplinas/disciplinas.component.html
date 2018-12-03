@@ -28,9 +28,8 @@
         <td>{{ i.curso }}</td>
         <td>{{ i.professor }}</td>
         <td>
-          <button type="button" class="btn btn-outline-primary btn">
+          <button type="button" (click)="editar(i)" class="btn btn-outline-primary btn">
               <fa name="edit" ></fa>
-
           </button>
         </td>
         <td>

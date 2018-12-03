@@ -36,28 +36,32 @@ const appRoutes: Routes = [
 
     { path: 'cursos', component: CursosComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
     { path: 'novo-curso', component: NovoCursoComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
-    { path: 'editar-curso', component: EditarCursosComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
+    { path: 'editar-curso', component: EditarCursosComponent, canActivate: [RoleGuard], data: { admin : '1', caminho : '/cursos'}  },
 
     { path: 'disciplinas', component: DisciplinasComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
     { path: 'nova-disciplina', component: NovaDisciplinaComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
-    { path: 'editar-disciplina', component: EditarDisciplinasComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
+    { path: 'editar-disciplina', component: EditarDisciplinasComponent,
+                canActivate: [RoleGuard], data: { admin : '1', caminho : '/disciplinas'}  },
     { path: 'cadastrar-aluno', component: CadastrarAlunoComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
 
     { path: 'departamentos', component: DepartamentosComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
     { path: 'novo-departamento', component: NovoDepartamentoComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
-    { path: 'editar-departamento', component: EditarDepartamentoComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
+    { path: 'editar-departamento', component: EditarDepartamentoComponent,
+              canActivate: [RoleGuard], data: { admin : '1', caminho : '/departamentos'}  },
 
     { path: 'universidades', component: UniversidadeComponent, canActivate: [RoleGuard], data: { admin : '1'} },
     { path: 'nova-universidade', component: NovaUniversidadeComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
-    { path: 'editar-universidade', component: EditarUniversidadeComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
+    { path: 'editar-universidade', component: EditarUniversidadeComponent,
+                                  canActivate: [RoleGuard], data: { admin : '1', caminho : '/universidades'}   },
 
     { path: 'professores', component: ProfessoresComponent, canActivate: [RoleGuard], data: { admin : '1'}    },
     { path: 'novo-professor', component: NovoProfessorComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
-    { path: 'editar-professor', component: EditarProfessoresComponent, canActivate: [RoleGuard], data: { admin : '1'}  },
+    { path: 'editar-professor', component: EditarProfessoresComponent,
+                                  canActivate: [RoleGuard], data: { admin : '1', caminho : '/professores'}  },
 
     { path: 'alunos', component: AlunosComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
     { path: 'novo-aluno', component: NovoAlunoComponent, canActivate: [RoleGuard], data: { admin : '1'}    },
-    { path: 'editar-aluno', component: EditarAlunosComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
+    { path: 'editar-aluno', component: EditarAlunosComponent, canActivate: [RoleGuard], data: { admin : '1', caminho : '/alunos'} },
 
     { path: 'editar-notas', component: MudarNotasComponent, canActivate: [RoleGuard], data: { professor : '1'}   },
 

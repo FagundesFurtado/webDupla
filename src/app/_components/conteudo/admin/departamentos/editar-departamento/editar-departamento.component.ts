@@ -21,16 +21,14 @@ export class EditarDepartamentoComponent implements OnInit {
   constructor(private router: Router, private data: DataService, private servidor: ServidorService) { }
 
   departamento: Departamento;
-  universidades: Universidade[] = [];
+  instituto: Universidade[] = [];
 
   ngOnInit() {
 
     const u = new Universidade();
     u.nome = 'Universidade 7';
-    this.universidades.push(u);
-    this.servidor.get(new Universidade()).then(lista => {
-        this.universidades = lista;
-    });
+    this.instituto.push(u);
+    this.servidor.get(new Universidade()).then(lista => this.instituto = lista );
 
 
     this.departamento =  this.data.objeto;
