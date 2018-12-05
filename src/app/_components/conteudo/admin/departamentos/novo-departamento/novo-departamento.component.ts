@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
-import { Universidade } from '../../../../../_models/universidade';
 import { ServidorService } from '@app/_services/servidor.service';
+import { Universidade } from '@app/_models/universidade';
 
 @Component({
   selector: 'app-novo-departamento',
@@ -15,7 +15,7 @@ export class NovoDepartamentoComponent implements OnInit {
 
 
 
-  universidade: Universidade[] = []
+  universidade: Universidade[] = [];
 
   constructor(private servidor: ServidorService) { }
 

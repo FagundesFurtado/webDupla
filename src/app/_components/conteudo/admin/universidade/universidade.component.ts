@@ -1,11 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
-import { Universidade } from '../../../../_models/universidade';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
 import { ServidorService } from '@app/_services/servidor.service';
+import { Universidade } from '@app/_models/universidade';
 
 
 @Component({
