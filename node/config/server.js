@@ -15,6 +15,7 @@ var cors = require('cors');
 var app = express();
 
 //setar view engine e view express
+app.use(cors({origin: 'http://localhost:8888'}));
 app.set('view engine','ejs');
 app.set('views','./app/views');
 app.use(bodyParser.json());
@@ -28,6 +29,8 @@ app.use(expressSession({
 // app.use(cors());
 //app.use(jquery)
 app.use(expressValidator());
+
+
 
 //autoload das rotas e modulos do objeto app
 consign()
