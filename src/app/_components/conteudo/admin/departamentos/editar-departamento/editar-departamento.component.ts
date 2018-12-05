@@ -4,7 +4,7 @@ import { Departamento } from '@app/_models/departamento';
 import { NgForm } from '@angular/forms';
 import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
-import { Universidade } from '@app/_models/universidade';
+import { Universidade } from '@app/_models/Universidade';
 
 
 @Component({
