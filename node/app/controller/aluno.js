@@ -27,7 +27,7 @@ module.exports.getDisciplinas = function(app, req, res){
       console.log(error);
     }
     else{
-    res.send(result);
+    res.status(200).send(result);
   }
 });
 connection.end();
@@ -75,7 +75,7 @@ module.exports.delete = function(app,req,res){
           console.log(error);
         }
         else {
-          res.send({deletado: 1})
+          res.status(200).send({deletado: 1})
         }
 
       });

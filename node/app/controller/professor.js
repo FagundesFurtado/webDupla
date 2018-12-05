@@ -24,7 +24,7 @@ module.exports.get = function(app, req, res){
         else{
 
 
-         return  res.send(result);
+         return  res.status(200).send(result);
        }
 
 
@@ -34,7 +34,7 @@ module.exports.get = function(app, req, res){
 
      }, function(){
 
-      res.send({permissao: 0});
+      res.status(200).send({permissao: 0});
     });
 
 
@@ -59,7 +59,7 @@ module.exports.post = function(app,req,res){
           console.log(error);
         }
         else{
-          res.send(requisicao);
+          res.status(200).send(requisicao);
         }
       });
 
@@ -86,7 +86,7 @@ module.exports.delete = function(app,req,res){
           console.log(error);
         }
         else {
-          res.send({deletado: 1})
+          res.status(200).send({deletado: 1})
         }
 
       });

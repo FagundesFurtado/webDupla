@@ -24,7 +24,7 @@ module.exports.get = function(app, req, res){
           else{
 
 
-           return  res.send(result[0]);
+           return  res.status(200).send(result[0]);
          }
        });
         connection.end();
