@@ -61,7 +61,7 @@ module.exports.post = function(app,req,res){
           console.log(error);
         }
         else{
-          res.send(requisicao);
+          res.status(200).send(requisicao);
         }
       });
 
