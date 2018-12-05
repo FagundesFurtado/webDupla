@@ -37,5 +37,4 @@ consign()
 	.then('app/controller')
 	.into(app);
 
-https.createServer(options, app).listen(3000);
 module.exports = app;
