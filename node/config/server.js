@@ -5,8 +5,11 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var expressSession = require('express-session');
 var authConfig = require('./auth');
+const https = require('https');
 //var jquery = require('jQuery');
 var cors = require('cors');
+
+
 
 
 var app = express();
@@ -34,4 +37,5 @@ consign()
 	.then('app/controller')
 	.into(app);
 
+https.createServer(options, app).listen(3000);
 module.exports = app;
