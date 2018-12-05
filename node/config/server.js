@@ -14,7 +14,7 @@ var cors = require('cors');
 
 var app = express();
 
-app.use(cors());
+
 app.set('view engine','ejs');
 app.set('views','./app/views');
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ app.use(expressSession({
 	resave: false,
 	saveUnintialized: false,
 }))
-// app.use(cors());
+app.use(cors());
 //app.use(jquery)
 app.use(expressValidator());
 
