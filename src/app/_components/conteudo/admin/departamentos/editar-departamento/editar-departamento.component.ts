@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Departamento } from '@app/_models/departamento';
+import { Departamento } from '../../../../../_models/departamento';
 import { NgForm } from '@angular/forms';
 import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
-import { Universidade } from '@app/_models/Universidade';
+import { Universidade } from '../../../../../_models/universidade';
 
 
 @Component({

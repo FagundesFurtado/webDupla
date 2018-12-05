@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
-import { Universidade } from '@app/_models/Universidade';
+import { Universidade } from '../../../../../_models/universidade';
 import { ServidorService } from '@app/_services/servidor.service';
 
 @Component({
