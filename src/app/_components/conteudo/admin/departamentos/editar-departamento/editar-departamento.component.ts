@@ -36,4 +36,6 @@ export class EditarDepartamentoComponent implements OnInit {
 
   }
 
+  cadastrar() {}
+
 }

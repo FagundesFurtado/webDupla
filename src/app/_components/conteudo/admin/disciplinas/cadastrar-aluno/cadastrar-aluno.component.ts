@@ -18,17 +18,13 @@ export class CadastrarAlunoComponent implements OnInit {
   disciplinas: Disciplina[] = [];
 
   ngOnInit() {
-    for(let i=0; i<10; i++){
-      let a = new Aluno();
-      let d = new Disciplina();
 
-      a.nome = "Aluno " +i;
-      d.nome = "Disciplina " +i;
-
-      this.alunos.push(a);
-      this.disciplinas.push(d);
-    }
 
   }
 
+
+  matricular() {
+
+
+  }
 }

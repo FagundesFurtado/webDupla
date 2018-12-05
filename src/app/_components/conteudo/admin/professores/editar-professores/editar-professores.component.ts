@@ -25,5 +25,9 @@ export class EditarProfessoresComponent implements OnInit {
 
   }
 
+  cadastrar() {
+
+
+  }
 
 }

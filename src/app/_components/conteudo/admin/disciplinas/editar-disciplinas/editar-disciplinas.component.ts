@@ -33,4 +33,8 @@ export class EditarDisciplinasComponent implements OnInit {
 
   }
 
+  cadastrar() {
+
+  }
+
 }

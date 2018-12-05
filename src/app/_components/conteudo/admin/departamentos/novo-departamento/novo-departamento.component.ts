@@ -23,4 +23,10 @@ export class NovoDepartamentoComponent implements OnInit {
       this.servidor.get(new Universidade()).then(lista => this.universidade = lista);
   }
 
+  cadastrar() {
+
+
+  }
+
+
 }
