@@ -20,7 +20,20 @@ module.exports.verify = async function(app, req, res, funcao){
 
   } );
 
+module.exports.converteToken = async function(req, titulo, funcao){
+		var token = req.header(titulo);
+		jwt.verify(token,authConfig.secret, function(error, decoded){
 
+				if(error) {
+					console.log(error);
+					return res.status(401).send({error: 'Token invalido'})
+				}
+
+			funcao(decoded);
+
+		} );
+
+}
 }
 module.exports.middleware = function(app,req,res, funcao){
 	// if(req.session.autenticado){

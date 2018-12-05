@@ -48,6 +48,7 @@ module.exports.get = function(app, req, res){
 module.exports.post = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
+    console.log("RENATINHA ",req.body)
     auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
 
       var requisicao = req.body;
