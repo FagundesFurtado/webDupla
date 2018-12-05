@@ -15,7 +15,17 @@ var cors = require('cors');
 var app = express();
 
 //setar view engine e view express
-app.use(cors({origin: 'https://0.0.0.0:3000'}));
+var whitelist = [
+  'https://smartssa.com.br:3000',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.set('view engine','ejs');
 app.set('views','./app/views');
 app.use(bodyParser.json());
