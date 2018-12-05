@@ -21,7 +21,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('https://18.228.197.162:3000/autenticacao', { username, password })
+    return this.http.post<any>('https://smartssa.com.br:3000/autenticacao', { username, password })
       .pipe(map(user => {
         console.log(user);
         if (user && user.Autenticacao) {

@@ -10,7 +10,7 @@ export class ServidorService {
 
   constructor(private http: Http) { }
 
-  private site = 'https://18.228.197.162:3000/';
+  private site = 'https://smartssa.com.br:3000/';
 
   private getAutorizacao() {
     const user = localStorage.getItem('user');
