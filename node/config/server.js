@@ -15,7 +15,7 @@ var cors = require('cors');
 var app = express();
 
 //setar view engine e view express
-app.use(cors({origin: 'http://localhost:8888'}));
+app.use(cors({origin: 'https://0.0.0.0:3000'}));
 app.set('view engine','ejs');
 app.set('views','./app/views');
 app.use(bodyParser.json());
