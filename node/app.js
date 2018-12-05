@@ -13,9 +13,9 @@ var options = {
   cert: fs.readFileSync('certificate.pem')
 };
 
+console.log(options);
 
-
-https.createServer(options, app).listen(3000);
+https.createServer(options, app).listen(3000, ()=> console.log("Rodando express com HTTPS") );
 
 
 
