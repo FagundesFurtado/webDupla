@@ -1,11 +1,11 @@
 module.exports = function(app) {
 	app.get('/react', function(req,res){
-		app.app.react.aluno.get(app,req,res);
+		app.app.react.get(app,req,res);
 	}) ;
 
 
 	app.post('/react', function(req,res){
-		app.app.react.aluno.post(app,req,res);
+		app.app.react.post(app,req,res);
 	});
 
 	app.delete('/react', function(req, res){
