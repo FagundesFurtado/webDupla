@@ -1,11 +1,18 @@
 module.exports = function(app) {
 	app.get('/react', function(req,res){
-		app.app.react.get(app,req,res);
+     res.status(200).send( {body: "Testando isso aqui"});
 	}) ;
 
 
 	app.post('/react', function(req,res){
-		app.app.react.post(app,req,res);
+    console.log("React Post");
+
+    let body = JSON.parse(req.body);
+
+    console.log("Usuario ", body.user.username);
+    console.log("Token " ,body.token.value);
+
+    res.status(200).send();
 	});
 
 	app.delete('/react', function(req, res){

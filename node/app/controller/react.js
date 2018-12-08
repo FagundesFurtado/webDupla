@@ -2,7 +2,7 @@ var auth  = require('./auth');
 module.exports.get = function(app, req, res){
 
 
-res.status(200).send( {body: "Testando isso aqui"});
+
 
 
 }
@@ -10,14 +10,7 @@ res.status(200).send( {body: "Testando isso aqui"});
 
 module.exports.post = function(app,req,res){
 
-  console.log("React Post");
 
-  let body = JSON.parse(req.body);
-
-  console.log("Usuario ", body.user.username);
-  console.log("Token " ,body.token.value);
-
-  res.status(200).send();
 }
 
 
