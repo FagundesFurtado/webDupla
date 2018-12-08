@@ -7,7 +7,9 @@ var https = require('https');
 var http = require('http');
 var fs = require('fs');
 
-This line is from the Node.js HTTPS documentation.
+// This line is from the Node.js HTTPS documentation.
+
+
 var options = {
   key: fs.readFileSync('/home/ubuntu/privkey.pem'),
   cert: fs.readFileSync('/home/ubuntu/fullchain.pem')
@@ -19,7 +21,7 @@ https.createServer(options, app).listen(3000, ()=> console.log("Rodando express 
 
 
 
-
+// 
 // app.listen(3000, function(){
 //
 // 	console.log("Rodando express");
