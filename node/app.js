@@ -10,20 +10,20 @@ var fs = require('fs');
 // This line is from the Node.js HTTPS documentation.
 
 
-var options = {
-  key: fs.readFileSync('/home/ubuntu/privkey.pem'),
-  cert: fs.readFileSync('/home/ubuntu/fullchain.pem')
-};
-
-console.log(options);
-
-https.createServer(options, app).listen(3000, ()=> console.log("Rodando express com HTTPS") );
-
-
-
-// 
-// app.listen(3000, function(){
+// var options = {
+//   key: fs.readFileSync('/home/ubuntu/privkey.pem'),
+//   cert: fs.readFileSync('/home/ubuntu/fullchain.pem')
+// };
 //
-// 	console.log("Rodando express");
+// console.log(options);
 //
-// });
+// https.createServer(options, app).listen(3000, ()=> console.log("Rodando express com HTTPS") );
+
+
+
+
+app.listen(3000, function(){
+
+	console.log("Rodando express");
+
+});

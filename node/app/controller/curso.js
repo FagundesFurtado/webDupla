@@ -73,14 +73,16 @@ module.exports.post = function(app,req,res){
 
 
 module.exports.delete = function(app,req,res){
-
   auth.middleware(app,req,res, function(campoToken){
-    auth.verificaAdmin(app,req,res, function(campoToken){
+
+    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
+
+      console.log("delete");
       var curso = req.header("curso");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-      genericDAO.delete({idCurso: curso},"professor", function(error, result){
+      genericDAO.delete({idCurso: curso},"curso", function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -88,6 +90,9 @@ module.exports.delete = function(app,req,res){
         else {
           res.send({deletado: 1})
         }
+
+      }, function(campoToken){
+          res.status(401).send({admin: 0});
 
       });
 
