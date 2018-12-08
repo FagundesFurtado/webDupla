@@ -99,7 +99,7 @@ module.exports.put = function(app,req,res){
   var connection = app.config.dbConnection();
   var genericDAO = new app.app.models.GenericDAO(connection);
   console.log("update");
-  genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
+  genericDAO.update(requisicao, {idInstituto: requisicao.idInstituto},"instituto",function(error, result){
     if(error){
       console.log("erro")
       console.log(error);
