@@ -8,7 +8,8 @@ module.exports = function(app) {
 	app.post('/react', function(req,res){
     console.log("React Post");
 
-    let body = JSON.parse(req.body);
+    console.log(res)
+    let body = req.body;
 
     console.log("Usuario ", body.user.username);
     console.log("Token " ,body.token.value);
