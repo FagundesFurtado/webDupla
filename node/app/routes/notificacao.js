@@ -2,7 +2,6 @@ module.exports = function(app) {
 	app.get('/notificacao', function(req,res){
       console.log("Notificacao");
 
-
       let expo = require('expo-server-sdk');
 
 
@@ -90,10 +89,7 @@ module.exports = function(app) {
 	app.post('/notificacao', function(req,res){
     console.log("React Post");
 
-    let body = req.body;
-
-    console.log("Usuario ", body.user.username);
-    console.log("Token " ,body.token.value);
+    console.log(req.body);
 
     res.status(200).send();
 	});
