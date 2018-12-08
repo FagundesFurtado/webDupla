@@ -29,8 +29,8 @@ export class EditarCursosComponent implements OnInit {
   }
 
 
-  fianlizarEdicao() {
-    this.servidor.put(this.formulario.value).subscribe(data => this.toastr.success('Editado com sucesso'),
+  finalizarEdicao() {
+    this.servidor.put('Curso', this.formulario.value).subscribe(data => this.toastr.success('Editado com sucesso'),
                                                       erro => this.toastr.error('Servidor indisponível no momento'));
   }
 

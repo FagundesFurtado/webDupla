@@ -1,7 +1,7 @@
 <div class="card">
-  <h3 class="text-center">Novo curso</h3>
+  <h3 class="text-center">Editar curso</h3>
 
-  <form #formulario="ngForm" (ngSubmit)="fianlizarEdicao()">
+  <form #formulario="ngForm" (ngSubmit)="finalizarEdicao()">
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Curso</label>
@@ -33,10 +33,10 @@
     <div class="d-flex flex-row-reverse">
         <input type="reset" class="btn btn-outline-danger" value="Resetar">
         <ng-container *ngIf="formulario.valid; else elseTemplate">
-            <input type="submit" class="btn btn-outline-primary" value="Cadastrar">
+            <input type="submit" class="btn btn-outline-primary" value="Editar">
         </ng-container>
         <ng-template #elseTemplate>
-            <input type="submit" disabled class="btn btn-outline-primary" value="Cadastrar">
+            <input type="submit" disabled class="btn btn-outline-primary" value="Editar">
         </ng-template>
 
 

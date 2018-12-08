@@ -6,9 +6,10 @@ module.exports.generationToken = function(params = {}){
 
 }
 module.exports.verify = async function(app, req, res, funcao){
+  console.log(req);
   var token = req.header("Autenticacao");
   console.log(token)
-  jwt.verify(token,authConfig.secret, function(error, decoded){
+  jwt.verify(token, authConfig.secret, function(error, decoded){
 
       if(error) {
         console.log(error);
