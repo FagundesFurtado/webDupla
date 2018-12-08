@@ -47,7 +47,7 @@ export class ServidorService {
   }
 
   public get(valor: any): Promise<any[]> {
-    const url = this.site + valor.constructor.name;
+    const url = this.site + valor;
     console.log('url ', url);
     return this.http.get(url, new RequestOptions({ headers: this.headers() })).timeout(3000)
       .toPromise().then((resposta: any) => {

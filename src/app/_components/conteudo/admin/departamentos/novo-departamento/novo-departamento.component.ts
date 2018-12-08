@@ -20,7 +20,7 @@ export class NovoDepartamentoComponent implements OnInit {
   constructor(private servidor: ServidorService) { }
 
   ngOnInit() {
-      this.servidor.get(new Universidade()).then(lista => this.universidade = lista);
+      this.servidor.get('Universidade').then(lista => this.universidade = lista);
   }
 
   cadastrar() {

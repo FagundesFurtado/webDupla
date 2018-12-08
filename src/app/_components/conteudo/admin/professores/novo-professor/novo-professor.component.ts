@@ -19,7 +19,7 @@ export class NovoProfessorComponent implements OnInit {
 
   ngOnInit() {
 
-    this.servidor.get(new Departamento()).then(lista => this.departamento = lista);
+    this.servidor.get('Departamento').then(lista => this.departamento = lista);
   }
 
   cadastrarProfessor() {

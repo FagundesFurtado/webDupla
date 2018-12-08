@@ -20,7 +20,7 @@ export class NovoCursoComponent implements OnInit {
   departamentos: Departamento[] = [];
 
   ngOnInit() {
-    this.servidor.get(new Departamento()).then(lista => this.departamentos = lista);
+    this.servidor.get('Departamento').then(lista => this.departamentos = lista);
 
   }
 

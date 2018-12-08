@@ -20,7 +20,7 @@ export class EditarProfessoresComponent implements OnInit {
   professor: Professor;
 
   ngOnInit() {
-    this.servidor.get(new Departamento()).then(lista => this.departamento = lista);
+    this.servidor.get('Departamento').then(lista => this.departamento = lista);
     this.professor = this.data.objeto;
 
   }

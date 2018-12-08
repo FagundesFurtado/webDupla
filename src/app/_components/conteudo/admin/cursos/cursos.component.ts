@@ -45,7 +45,7 @@ export class CursosComponent implements OnInit {
   modalRef: BsModalRef;
 
   ngOnInit() {
-   this.servidor.get(new Curso()).then(lista => this.curso = lista);
+   this.servidor.get('Curso').then(lista => this.curso = lista);
   }
 
   onPageChange(number: number) {

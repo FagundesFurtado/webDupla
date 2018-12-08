@@ -44,7 +44,7 @@ export class ProfessoresComponent implements OnInit {
   public professores: Professor[];
 
   ngOnInit() {
-    this.servidor.get(new Professor).then(lista => this.professores = lista);
+    this.servidor.get('Professor').then(lista => this.professores = lista);
   }
 
   onPageChange(number: number) {

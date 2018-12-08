@@ -46,7 +46,7 @@ export class DisciplinasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.servidor.get(new Disciplina()).then(lista => { this.disciplinas = lista;
+    this.servidor.get('Disciplina').then(lista => { this.disciplinas = lista;
 
      console.log(lista);
 

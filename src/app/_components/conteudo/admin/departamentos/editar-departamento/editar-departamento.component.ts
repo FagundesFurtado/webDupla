@@ -29,7 +29,7 @@ export class EditarDepartamentoComponent implements OnInit {
     const u = new Universidade();
     u.nome = 'Universidade 7';
     this.instituto.push(u);
-    this.servidor.get(new Universidade()).then(lista => this.instituto = lista );
+    this.servidor.get('Universidade').then(lista => this.instituto = lista );
 
 
     this.departamento =  this.data.objeto;

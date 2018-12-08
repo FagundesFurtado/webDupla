@@ -3,18 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
-
-
-
 import { FormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { CommonModule } from '@angular/common';
-
 import { AlertComponent } from './_components';
-
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -56,6 +49,7 @@ import { EditarCursosComponent } from './_components/conteudo/admin/cursos/edita
 import { DataService } from './_services/data.service';
 import { EditarAlunosComponent } from './_components/conteudo/admin/alunos/editar-alunos/editar-alunos.component';
 import { NotasAlunoComponent } from './_components/conteudo/aluno/notas-aluno/notas-aluno.component';
+import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   imports: [
@@ -115,7 +109,8 @@ import { NotasAlunoComponent } from './_components/conteudo/aluno/notas-aluno/no
     AuthGuardService,
     AuthService,
     DataService,
-    RoleGuardService
+    RoleGuardService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

@@ -25,8 +25,8 @@ export class EditarDisciplinasComponent implements OnInit {
 
     this.disciplina = this.data.objeto;
 
-    this.servidor.get(new Professor()).then(lista => this.professores = lista);
-    this.servidor.get(new Curso()).then(lista => this.cursos = lista);
+    this.servidor.get('Professor').then(lista => this.professores = lista);
+    this.servidor.get('Curso').then(lista => this.cursos = lista);
 
 
 

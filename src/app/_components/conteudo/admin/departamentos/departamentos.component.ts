@@ -48,7 +48,7 @@ export class DepartamentosComponent implements OnInit {
   public departamento: Departamento[] = [];
 
   ngOnInit() {
-    this.servidor.get(new Departamento()).then(
+    this.servidor.get('Departamento').then(
       lista => {this.departamento = lista;
       console.log(this.departamento);
 

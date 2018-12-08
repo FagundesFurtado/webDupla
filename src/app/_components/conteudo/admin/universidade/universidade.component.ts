@@ -46,7 +46,7 @@ export class UniversidadeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.servidor.get(new Universidade())
+    this.servidor.get('Universidade')
       .then((lista: Universidade[]) => {
         this.universidade = lista;
       })
