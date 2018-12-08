@@ -33,7 +33,7 @@ module.exports.get = function(app, req, res){
 
 
      }, function(){
-    
+
       res.send({permissao: 0});
     });
 
@@ -104,7 +104,7 @@ function(campoToken){
 
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
-    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+    auth.verificacao(app,req,res, true, req.header("Autenticacao"), function(campoToken){
       var requisicao = req.body;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
