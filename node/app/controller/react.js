@@ -2,6 +2,9 @@ var auth  = require('./auth');
 module.exports.get = function(app, req, res){
 
 
+res.status(200).send( {body: "Testando isso aqui"});
+
+
 }
 
 
