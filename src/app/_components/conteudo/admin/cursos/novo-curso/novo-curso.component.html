@@ -13,7 +13,8 @@
       <label class="col-2 col-form-label">Departamento</label>
       <div class="col-10">
         <select required class="form-control" name="departamento" ngModel>
-          <option *ngFor="let item of departamentos"> {{item.nome}}</option>
+          <option disabled ></option>
+          <option *ngFor="let item of departamentos" value="{{item.idDepartamento}}"> {{item.nome}}</option>
         </select>
       </div>
     </div>

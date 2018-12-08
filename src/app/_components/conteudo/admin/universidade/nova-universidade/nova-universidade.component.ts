@@ -24,7 +24,7 @@ export class NovaUniversidadeComponent implements OnInit {
 
   cadastrarUniversidade() {
 
-    this.servidor.post(this.formulario.value, new Universidade()).subscribe(
+    this.servidor.post(this.formulario.value, 'Universidade').subscribe(
       data => {
         const resposta = data.json();
         if (resposta.status === 1) {

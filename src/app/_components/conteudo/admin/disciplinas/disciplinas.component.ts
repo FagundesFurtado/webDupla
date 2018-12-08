@@ -45,12 +45,7 @@ export class DisciplinasComponent implements OnInit {
   public disciplinas: Disciplina[] = [];
 
   ngOnInit() {
-
-    this.servidor.get('Disciplina').then(lista => { this.disciplinas = lista;
-
-     console.log(lista);
-
-    });
+    this.servidor.get('Disciplina').then(lista => this.disciplinas = lista);
 
     const teste = new Disciplina();
     teste.curso = 'Curso Nome';

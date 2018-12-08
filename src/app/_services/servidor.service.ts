@@ -43,26 +43,21 @@ export class ServidorService {
     return this.http.put(url, new RequestOptions({ headers: this.headers(), body: JSON.stringify(id) })).timeout(3000);
   }
 
-  public post(valor: any, tipo: any): Observable<any> {
-    const url = this.site + tipo;
+  public post(valor: any, classe: any): Observable<any> {
+    const url = this.site + classe;
     return this.http.post(url, JSON.stringify(valor), new RequestOptions({ headers: this.headers() })).timeout(3000);
   }
 
   public get(valor: any): Promise<any[]> {
     const url = this.site + valor;
     console.log('url ', url);
-    return this.http.get(url, new RequestOptions({ headers: this.headers() })).timeout(3000)
-      .toPromise().then((resposta: any) => {
-          console.log(resposta);
-        return resposta.json();
-      },
-      (error) => {
-          this.route.navigate(['login']);
-      }).catch();
+    return this.http.get(url, new RequestOptions({ headers: this.headers() })).toPromise()
+                .then((data) => data.json()).catch( () => this.route.navigate(['login']));
+
   }
 
-  public delete(id: any): Observable<any> {
-    const url = this.site + id;
+  public delete(valor: string, id: any): Observable<any> {
+    const url = this.site + valor;
     return this.http.delete(url, new RequestOptions({ headers: this.headers(), body: JSON.stringify(id) })).timeout(3000);
   }
 

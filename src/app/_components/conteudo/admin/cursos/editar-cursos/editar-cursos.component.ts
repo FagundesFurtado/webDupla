@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
   selector: 'app-editar-cursos',
@@ -16,7 +18,8 @@ export class EditarCursosComponent implements OnInit {
   @ViewChild('formulario') public formulario: NgForm;
 
 
-  constructor(private data: DataService, private toastr: ToastrService, private servidor: ServidorService) { }
+  constructor(private data: DataService, private toastr: ToastrService,
+              private servidor: ServidorService, private auth: AuthenticationService) { }
 
   curso: Curso;
   departamentos: Departamento[];
@@ -30,8 +33,15 @@ export class EditarCursosComponent implements OnInit {
 
 
   finalizarEdicao() {
-    this.servidor.put('Curso', this.formulario.value).subscribe(data => this.toastr.success('Editado com sucesso'),
-                                                      erro => this.toastr.error('Servidor indisponível no momento'));
+    this.servidor.put('Curso', this.formulario.value)
+      .subscribe(data => this.toastr.success('Editado com sucesso'),
+        erro => {
+          if (erro.status === 401) {
+              this.auth.logout();
+          } else {
+           this.toastr.error('Servidor indisponível no momento');
+          }
+    });
   }
 
 }

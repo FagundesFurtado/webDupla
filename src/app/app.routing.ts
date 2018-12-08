@@ -2,7 +2,6 @@
 
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
 import { MudarNotasComponent } from './_components/conteudo/professor/mudar-notas/mudar-notas.component';
 import { PresencaComponent } from './_components/conteudo/professor/presenca/presenca.component';
 
@@ -32,7 +31,6 @@ import { CursosComponent } from './_components/conteudo/admin/cursos/cursos.comp
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [RoleGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
 
     { path: 'cursos', component: CursosComponent, canActivate: [RoleGuard], data: { admin : '1'}   },
     { path: 'novo-curso', component: NovoCursoComponent, canActivate: [RoleGuard], data: { admin : '1'}  },

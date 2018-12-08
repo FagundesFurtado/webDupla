@@ -4,7 +4,7 @@
     <form #formulario="ngForm" (ngSubmit)="cadastrar()">
 
       <div class="form-group row">
-        <label class="col-2 col-form-label">Curso:</label>
+        <label class="col-2 col-form-label">Departamento:</label>
         <div class="col-10">
           <input type="text"  required class="form-control" name="nome" placeholder="Nome do departamento" ngModel>
         </div>
@@ -19,8 +19,9 @@
       <div class="form-group row">
           <label class="col-2 col-form-label">Universidade:</label>
           <div class="col-10">
-            <select required class="form-control" name="universidade" ngModel>
-              <option *ngFor="let item of universidade"> {{item.nome}}</option>
+            <select required class="form-control" name="instituto" ngModel>
+              <option disabled></option>
+              <option *ngFor="let item of universidade" value="{{item.idInstituto}}"> {{item.nome}}</option>
             </select>
           </div>
         </div>

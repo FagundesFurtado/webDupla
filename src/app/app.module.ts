@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
 import { TopoComponent } from './_components/topo/topo.component';
 import { MudarNotasComponent } from './_components/conteudo/professor/mudar-notas/mudar-notas.component';
 import { PresencaComponent } from './_components/conteudo/professor/presenca/presenca.component';
@@ -74,7 +73,6 @@ import { HashLocationStrategy, LocationStrategy} from '@angular/common';
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent,
     TopoComponent,
     MudarNotasComponent,
     PresencaComponent,

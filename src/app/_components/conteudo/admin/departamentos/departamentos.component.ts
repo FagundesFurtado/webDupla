@@ -49,10 +49,11 @@ export class DepartamentosComponent implements OnInit {
 
   ngOnInit() {
     this.servidor.get('Departamento').then(
-      lista => {this.departamento = lista;
-      console.log(this.departamento);
+      lista => {
+      this.departamento = lista;
+        console.log(this.departamento);
 
-    });
+      });
 
 
   }
@@ -74,9 +75,20 @@ export class DepartamentosComponent implements OnInit {
       return x.nome;
     }).indexOf(numero);
 
-    this.departamento.splice(index, 1);
-    this.modalRef.hide();
-    this.toastr.success('Removido com sucesso');
+
+    const excluir = this.departamento[index];
+
+
+    this.servidor.delete('Departamento', { id: excluir.idDepartamento }).subscribe(data => {
+      this.modalRef.hide();
+      this.departamento.splice(index, 1);
+      this.toastr.success('Removido com sucesso');
+
+    }, erro => {
+      this.modalRef.hide();
+      this.toastr.error('Servidor indisponível no momento');
+    });
+
   }
 
   decline(): void {
@@ -88,7 +100,7 @@ export class DepartamentosComponent implements OnInit {
 
     this.data.objeto = objeto;
 
-      this.router.navigate(['/editar-departamento']);
+    this.router.navigate(['/editar-departamento']);
   }
 
 
