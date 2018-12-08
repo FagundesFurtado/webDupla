@@ -1,11 +1,11 @@
 module.exports = function(app) {
-	app.get('/react', function(req,res){
+	app.get('/notificacao', function(req,res){
       console.log("React react");
      res.status(200).send( {body: "Testando isso aqui"});
 	}) ;
 
 
-	app.post('/react', function(req,res){
+	app.post('/notificacao', function(req,res){
     console.log("React Post");
 
     let body = req.body;
@@ -16,12 +16,12 @@ module.exports = function(app) {
     res.status(200).send();
 	});
 
-	app.delete('/react', function(req, res){
+	app.delete('/notificacao', function(req, res){
 
 
 	});
 
-	app.put('/react', function(req,res){
+	app.put('/notificacao', function(req,res){
 
 });
 }
