@@ -13,6 +13,7 @@ module.exports = function(app) {
     console.log("Usuario ", body.user.username);
     console.log("Token " ,body.token.value);
 
+    console.log("Terminou");
     res.status(200).send();
 	});
 
