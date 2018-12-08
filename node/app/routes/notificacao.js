@@ -3,9 +3,8 @@ module.exports = function(app) {
       console.log("Notificacao");
 
 
-      import Expo from 'expo-server-sdk';
+      let expo = require('expo-server-sdk');
 
-      let expo = new Expo();
 
       let messages = [];
       var somePushTokens =[]
