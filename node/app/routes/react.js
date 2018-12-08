@@ -1,5 +1,6 @@
 module.exports = function(app) {
 	app.get('/react', function(req,res){
+      console.log("React react");
      res.status(200).send( {body: "Testando isso aqui"});
 	}) ;
 
