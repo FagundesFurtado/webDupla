@@ -2,8 +2,9 @@ module.exports = function(app) {
 	app.get('/notificacao', function(req,res){
       console.log("Notificacao");
 
-      let expo = require('expo-server-sdk');
+      const { Expo } = require('expo-server-sdk')
 
+      let expo = new Expo();
 
       let messages = [];
       var somePushTokens =[]
@@ -13,7 +14,7 @@ module.exports = function(app) {
         // Each push token looks like ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]
 
         // Check that all your push tokens appear to be valid Expo push tokens
-        if (!expo.isExpoPushToken(pushToken)) {
+        if (!Expo.isExpoPushToken(pushToken)) {
           console.error(`Push token ${pushToken} is not a valid Expo push token`);
           continue;
         }
