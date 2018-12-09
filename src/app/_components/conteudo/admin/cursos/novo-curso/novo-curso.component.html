@@ -19,6 +19,15 @@
       </div>
     </div>
     <div class="form-group row">
+      <label class="col-2 col-form-label">Professor</label>
+      <div class="col-10">
+        <select required class="form-control" name="professor" ngModel>
+          <option disabled ></option>
+          <option *ngFor="let item of professores" value="{{item.idProfessor}}"> {{item.nome}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
       <label class="col-2 col-form-label">Área</label>
       <div class="col-10">
         <input type="text" class="form-control" required name="area" placeholder="Área" ngModel>
@@ -39,8 +48,6 @@
         <ng-template #elseTemplate>
             <input type="submit" disabled class="btn btn-outline-primary" value="Cadastrar">
         </ng-template>
-
-
     </div>
   </form>
 

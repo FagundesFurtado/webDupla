@@ -45,13 +45,9 @@ export class DisciplinasComponent implements OnInit {
   public disciplinas: Disciplina[] = [];
 
   ngOnInit() {
-    this.servidor.get('Disciplina').then(lista => this.disciplinas = lista);
-
-    const teste = new Disciplina();
-    teste.curso = 'Curso Nome';
-
-    const a = Object.keys(teste);
-    console.log('teste ', a);
+    this.servidor.get('Disciplina').then(
+      lista => { this.disciplinas = lista;
+      console.log(lista); });
 
 
 
@@ -68,14 +64,20 @@ export class DisciplinasComponent implements OnInit {
 
   confirm(): void {
 
-    const numero = this.delete.nome;
+    const numero = this.delete.idDisciplina;
     const index = this.disciplinas.map(x => {
-      return x.nome;
+      return x.idDisciplina;
     }).indexOf(numero);
 
-    this.disciplinas.splice(index, 1);
-    this.modalRef.hide();
-    this.toastr.success('Removido com sucesso');
+    const excluir = this.disciplinas[index];
+    this.servidor.delete('Disciplina', excluir.idDisciplina).subscribe(data => {
+      this.modalRef.hide();
+      this.disciplinas.splice(index, 1);
+      this.toastr.success('Removido com sucesso');
+    }, erro => {
+      this.modalRef.hide();
+      this.toastr.error('Servidor indisponível no momento');
+    });
   }
 
   decline(): void {

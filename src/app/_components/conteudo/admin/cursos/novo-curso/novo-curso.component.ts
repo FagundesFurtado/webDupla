@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Departamento } from '@app/_models/departamento';
 import { ServidorService } from '@app/_services/servidor.service';
 import { Router } from '@angular/router';
+import { Professor } from '@app/_models/professor';
 
 
 
@@ -20,10 +21,11 @@ export class NovoCursoComponent implements OnInit {
               private route: Router) { }
 
   departamentos: Departamento[] = [];
+  professores: Professor[];
 
   ngOnInit() {
     this.servidor.get('Departamento').then(lista => this.departamentos = lista);
-
+    this.servidor.get('Professor').then(lista => this.professores = lista);
   }
 
 

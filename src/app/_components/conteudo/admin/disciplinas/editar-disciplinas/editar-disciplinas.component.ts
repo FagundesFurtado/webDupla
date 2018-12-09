@@ -5,6 +5,8 @@ import { DataService } from '@app/_services/data.service';
 import { Curso } from '@app/_models/curso';
 import { Professor } from '@app/_models/professor';
 import { ServidorService } from '@app/_services/servidor.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-disciplinas',
@@ -19,7 +21,8 @@ export class EditarDisciplinasComponent implements OnInit {
   cursos: Curso[];
   professores: Professor[];
 
-  constructor(private data: DataService, private servidor: ServidorService) { }
+  constructor(private data: DataService, private servidor: ServidorService,
+              private toast: ToastrService, private route: Router) { }
 
   ngOnInit() {
 
@@ -33,7 +36,15 @@ export class EditarDisciplinasComponent implements OnInit {
 
   }
 
-  cadastrar() {
+  finalizarEdicao() {
+    const saida = Object.assign(new Disciplina, this.formulario.value);
+    saida.idDisciplina = this.disciplina.idDisciplina;
+    this.servidor.put('Disciplina', saida).subscribe(data => {
+      this.toast.success('Editado com sucesso');
+      this.route.navigate(['disciplinas']);
+    }, erro => {
+      this.toast.error('Servidor indisponível no momento');
+    });
 
   }
 

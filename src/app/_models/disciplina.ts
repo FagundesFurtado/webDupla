@@ -7,4 +7,6 @@ export class Disciplina {
     horario: string;
     sala: string;
     professor: string;
+    idProfessor: number;
+    idCurso: number;
 }
