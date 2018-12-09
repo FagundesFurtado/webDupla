@@ -6,6 +6,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrService } from 'ngx-toastr';
 import { ServidorService } from '@app/_services/servidor.service';
 import { Universidade } from '@app/_models/Universidade';
+import { DataService } from '@app/_services/data.service';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class UniversidadeComponent implements OnInit {
 
 
   constructor(private router: Router, private modalService: BsModalService,
-              private toastr: ToastrService, private servidor: ServidorService) { }
+              private toastr: ToastrService, private servidor: ServidorService,
+              private data: DataService) { }
 
   modalRef: BsModalRef;
   delete: any;
@@ -81,5 +83,12 @@ export class UniversidadeComponent implements OnInit {
   decline(): void {
     this.modalRef.hide();
   }
+
+  editar(data) {
+      this.data.objeto = data;
+      this.router.navigate(['editar-universidade']);
+
+  }
+
 
 }

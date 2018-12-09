@@ -1,4 +1,5 @@
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/timeout';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class ServidorService {
 
-  constructor(private http: Http, private route: Router) { }
+  constructor(private http: Http, private route: Router, private httpClient: HttpClient) { }
 
   private site = 'https://smartssa.com.br:3000/';
 
@@ -38,9 +39,9 @@ export class ServidorService {
   }
 
 
-  public put(value: string, id: any): Observable<any> {
-    const url = this.site + value;
-    return this.http.put(url, new RequestOptions({ headers: this.headers(), body: JSON.stringify(id) })).timeout(3000);
+  public put(classe: string, id: any): Observable<any> {
+    const url = this.site + classe;
+   return this.http.put(url, id , new RequestOptions({ headers: this.headers()})).timeout(3000);
   }
 
   public post(valor: any, classe: any): Observable<any> {

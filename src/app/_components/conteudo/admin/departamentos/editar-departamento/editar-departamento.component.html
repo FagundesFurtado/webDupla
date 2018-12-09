@@ -1,7 +1,7 @@
 <div class="card">
   <h3 class="text-center">Editar departamento</h3>
 
-  <form #formulario="ngForm" (ngSubmit)="cadastrar()">
+  <form #formulario="ngForm" (ngSubmit)="finalizarEdicao()">
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Curso:</label>
@@ -19,7 +19,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Instituto:</label>
         <div class="col-10">
-          <select required class="form-control" name="institudo" [(ngModel)]="departamento.instituto">
+          <select required class="form-control" name="instituto" [(ngModel)]="departamento.instituto">
             <option *ngFor="let item of instituto"> {{item.nome}}</option>
           </select>
         </div>

@@ -1,6 +1,8 @@
 export class Universidade {
   idInstituto: number;
   nome: string;
-  caminho: string;
+  endereco: string;
+  cidade: string;
+  cep: string;
 
 }

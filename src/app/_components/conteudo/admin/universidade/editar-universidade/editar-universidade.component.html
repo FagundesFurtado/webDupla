@@ -1,3 +1,43 @@
-<p>
-  editar-universidade works!
-</p>
+<div class="card">
+  <h3 class="text-center">Editar universidade</h3>
+
+  <form #formulario="ngForm" (ngSubmit)="finalizarEdicao()">
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nome:</label>
+      <div class="col-10">
+        <input type="text" required class="form-control" name="nome" placeholder="Nome da universidade" [(ngModel)]="universidade.nome">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Cidade:</label>
+      <div class="col-10">
+        <input type="text" class="form-control" required name="cidade" placeholder="Cidade" [(ngModel)]="universidade.cidade">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Endereço:</label>
+      <div class="col-10">
+        <input type="text" required class="form-control" name="endereco" placeholder="Endereço" [(ngModel)]="universidade.endereco">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">CEP:</label>
+      <div class="col-10">
+        <input type="text" class="form-control" mask="00000-000" required name="cep" placeholder="CEP" [(ngModel)]="universidade.cep">
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse">
+      <input type="reset" class="btn btn-outline-danger" value="Resetar">
+      <ng-container *ngIf="formulario.valid; else elseTemplate">
+        <input type="submit" class="btn btn-outline-primary" value="Editar">
+      </ng-container>
+      <ng-template #elseTemplate>
+        <input type="submit" disabled class="btn btn-outline-primary" value="Editar">
+      </ng-template>
+    </div>
+  </form>
+
+</div>

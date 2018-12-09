@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
 import { Universidade } from '@app/_models/Universidade';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -19,7 +20,8 @@ export class EditarDepartamentoComponent implements OnInit {
 
   @ViewChild('formulario') public formulario: NgForm;
 
-  constructor(private router: Router, private data: DataService, private servidor: ServidorService) { }
+  constructor(private router: Router, private data: DataService, private servidor: ServidorService,
+              private toast: ToastrService) { }
 
   departamento: Departamento;
   instituto: Universidade[] = [];
@@ -37,6 +39,19 @@ export class EditarDepartamentoComponent implements OnInit {
 
   }
 
-  cadastrar() {}
+  finalizarEdicao() {
+
+    const saida = Object.assign(new Departamento, this.formulario.value);
+    saida.idDepartamento = this.departamento.idDepartamento;
+    console.log(saida);
+    this.servidor.put('Departamento', saida).subscribe( data => {
+      console.log(data);
+      this.toast.success('Editado com sucesso');
+      this.router.navigate(['departamentos']);
+    }, erro => {
+      console.log(erro);
+      this.toast.error('Servidor indisponível no momento');
+    });
+  }
 
 }
