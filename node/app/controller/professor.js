@@ -14,6 +14,18 @@ module.exports.get = function(app, req, res){
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
+      if(campoToken.admin == 2){
+        genericDAO.read("professor", function(err, result){
+          if(err){
+            return res.status(400).send({erro: 1});
+          }
+          return res.status(200).send(result);
+        })
+
+
+      }
+
+
         var query = "select distinct departamento.nome as departamentoNome, professor.* from departamento, instituto, professor where  professor.departamento = departamento.idDepartamento and departamento.instituto = "+String(universidade);
        genericDAO.execute(query,function(error, result){
          console.log("busca departamento");

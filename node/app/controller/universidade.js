@@ -17,7 +17,7 @@ module.exports.get = function(app, req, res){
 
       // })
       // .then( async function(id){
-
+      if(campoToken.admin == 1){
        genericDAO.find({idInstituto: universidade}, "instituto", function(err,result1){
 
             if(err)
@@ -28,7 +28,19 @@ module.exports.get = function(app, req, res){
             }
             res.send(result1);
         });
+      }
+      if(campoToken.admin == 2){
+        genericDAO.read("instituto",function(err,result1){
 
+             if(err)
+             {
+               console.log("erro busca universidade");
+               console.log(err);
+               return res.status(400).send({error: 'Falha ao encontrar universidade'});
+             }
+             res.send(result1);
+         });
+      }
 
     }, function(token){
       console.log(token);

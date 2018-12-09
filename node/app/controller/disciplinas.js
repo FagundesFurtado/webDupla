@@ -8,7 +8,7 @@ module.exports.get = function(app, req, res){
     console.log(campoToken)
     // var curso = req.query.curso;
 
-    auth.verificaAdmin(app,req,res, campoToken, function(campoToken){
+    auth.verificacao(app,req,res,true, campoToken, function(campoToken){
       let id = campoToken.id;
       var universidade = campoToken.universidade;
       var connection = app.config.dbConnection();
@@ -105,7 +105,7 @@ module.exports.put = function(app,req,res){
     var requisicao = req.body;
     var connection = app.config.dbConnection();
     var genericDAO = new app.app.models.GenericDAO(connection);
-    
+
     genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
       if(error){
         console.log("erro")

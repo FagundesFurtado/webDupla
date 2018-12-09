@@ -17,6 +17,24 @@ module.exports.get = function(app, req, res){
       var genericDAO = new app.app.models.GenericDAO(connection);
       console.log("peteca");
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
+      if(campoToken.admin == 2){
+        var query = "select departamento.*,instituto.nome as 'nomeInstituto' from departamento,instituto";
+        console.log(query);
+        console.log(universidade);
+         genericDAO.execute(query,function(error, result){
+           console.log("busca departamento");
+           if(error){
+            console.log("erro")
+            console.log(error);
+            return res.status(400).send({erro : 1});
+          }
+          else{
+
+
+           return  res.status(200).send(result);
+         }
+       });
+      }
       var query = "select departamento.*,instituto.nome as 'nomeInstituto' from departamento,instituto where instituto ="+universidade;
       console.log(query);
       console.log(universidade);
@@ -29,7 +47,7 @@ module.exports.get = function(app, req, res){
         else{
 
 
-         return  res.send(result);
+         return  res.status(200).send(result);
        }
      });
        connection.end();

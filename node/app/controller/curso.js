@@ -14,6 +14,23 @@ module.exports.get = function(app, req, res){
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
+      if(campoToken.admin == 2){
+        var query = "select distinct professor.nome as nomeProfessor, departamento.nome as nomeDepartamento, curso.* from departamento, professor, instituto, curso where  curso.departamento = departamento.idDepartamento and professor.idProfessor= curso.professor";
+       genericDAO.execute(query,function(error, result){
+         console.log("busca curso");
+         if(error){
+          console.log("erro")
+          console.log(error);
+        }
+        else{
+
+
+         return  res.send(result);
+       }
+
+
+   });
+      }
         var query = "select distinct professor.nome as nomeProfessor, departamento.nome as nomeDepartamento, curso.* from departamento, professor, instituto, curso where  curso.departamento = departamento.idDepartamento and professor.idProfessor= curso.professor and departamento.instituto = "+String(universidade);
        genericDAO.execute(query,function(error, result){
          console.log("busca curso");
