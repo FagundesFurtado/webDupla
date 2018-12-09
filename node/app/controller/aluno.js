@@ -1,20 +1,47 @@
 var auth  = require('./auth');
+
+
 module.exports.get = function(app, req, res){
-  var aluno = req.query.aluno;
-  var connection = app.config.dbConnection();
-  var genericDAO = new app.app.models.GenericDAO(connection);
-  genericDAO.read("aluno",function(error, result){
-    if(error){
-      console.log("erro")
-      console.log(error);
-    }
-    else{
-    res.send(result);
-  }
-});
-connection.end();
+
+
+  auth.middleware(app,req,res, function(campoToken){
+    console.log(campoToken)
+    // var curso = req.query.curso;
+
+    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+        let id = campoToken.id;
+      var universidade = campoToken.universidade;
+      var connection = app.config.dbConnection();
+      var genericDAO = new app.app.models.GenericDAO(connection);
+
+        var query = "select curso.nome as nomeCurso, aluno.* from aluno, curso where curso.idCurso = aluno.curso;";
+       genericDAO.execute(query,function(error, result){
+         console.log("busca aluno");
+         if(error){
+          console.log("erro")
+          console.log(error);
+        }
+        else{
+
+
+         return  res.send(result);
+       }
+
+
+   });
+       connection.end();
+
+
+     }, function(){
+
+      res.send({permissao: 0});
+    });
+
+
+  })
 
 }
+
 
 module.exports.getDisciplinas = function(app, req, res){
   var aluno = req.query.aluno;

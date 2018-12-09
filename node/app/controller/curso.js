@@ -16,7 +16,7 @@ module.exports.get = function(app, req, res){
 
         var query = "select distinct professor.nome as nomeProfessor, departamento.nome as nomeDepartamento, curso.* from departamento, professor, instituto, curso where  curso.departamento = departamento.idDepartamento and professor.idProfessor= curso.professor and departamento.instituto = "+String(universidade);
        genericDAO.execute(query,function(error, result){
-         console.log("busca departamento");
+         console.log("busca curso");
          if(error){
           console.log("erro")
           console.log(error);
