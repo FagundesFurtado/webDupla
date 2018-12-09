@@ -14,7 +14,7 @@ module.exports.get = function(app, req, res){
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-        var query = "select distinct professor.nome as nomeProfessor, departamento.nome as nomeDepartamento, curso.* from departamento, instituto, curso where  curso.departamento = departamento.idDepartamento and departamento.instituto = "+String(universidade);
+        var query = "select distinct professor.nome as nomeProfessor, departamento.nome as nomeDepartamento, curso.* from departamento, professor, instituto, curso where  curso.departamento = departamento.idDepartamento and professor.departamento= departamento.idDepartamento and departamento.instituto = "+String(universidade);
        genericDAO.execute(query,function(error, result){
          console.log("busca departamento");
          if(error){
