@@ -96,6 +96,7 @@ module.exports.put = function(app,req,res){
     auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
 
   var requisicao = req.body;
+  console.log(requisicao)
   var connection = app.config.dbConnection();
   var genericDAO = new app.app.models.GenericDAO(connection);
   console.log("update");

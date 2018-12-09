@@ -69,3 +69,6 @@ module.exports.verificacao = function(app, req, res, condicao, token, funcaoAdmi
 	funcaoNormal(token);
 	}
 }
+/*
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiYWRtaW4iOjEsInVuaXZlcnNpZGFkZSI6MSwicHJvZmVzc29yIjoxLCJhbHVubyI6bnVsbCwiaWF0IjoxNTQ0MzAyNzcyLCJleHAiOjE1NDQzODkxNzJ9.Vx5MCBt1E96o7sDfr5Jyfg-lUHLS5STLh_afOp_gn1k
+*/
