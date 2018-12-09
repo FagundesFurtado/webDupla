@@ -5,4 +5,11 @@ export class Aluno {
     email: string;
     nome: string;
     curso: string;
+    bolsista: boolean;
+    anoinicio: number;
+    semestre: number;
+    usuario: string;
+    senha: string;
+    endereco: string;
+
 }
