@@ -19,7 +19,7 @@
       <tr *ngFor="let i of (departamento | buscar: filter | paginate: config)">
         <td>{{ i.nome }}</td>
         <td>{{ i.telefone }}</td>
-        <td>{{ i.instituto }}</td>
+        <td>{{ i.nomeInstituto }}</td>
         <td>
           <button type="button" (click)="editar(i)" class="btn btn-outline-primary btn">
               <fa name="edit" ></fa>

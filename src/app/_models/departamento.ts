@@ -3,5 +3,6 @@ export class Departamento {
   nome: string;
   telefone: string;
   instituto: string;
+  nomeInstituto: string;
 
 }
