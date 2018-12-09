@@ -57,9 +57,12 @@ export class ServidorService {
 
   }
 
-  public delete(valor: string, id: any): Observable<any> {
-    const url = this.site + valor;
-    return this.http.delete(url, new RequestOptions({ headers: this.headers(), body: JSON.stringify(id) })).timeout(3000);
+  public delete(classe: string,  valor: any): Observable<any> {
+    const url = this.site + classe;
+    const head = this.headers();
+    head.append(classe, valor);
+    console.log(head);
+    return this.http.delete(url,  new RequestOptions({ headers: head })).timeout(3000);
   }
 
 

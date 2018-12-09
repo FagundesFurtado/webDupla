@@ -121,6 +121,9 @@ module.exports.put = function(app,req,res){
           console.log("erro")
           console.log(error);
         }
+        else {
+          res.send({atualizado: 1})
+        }
       });
 
       connection.end();

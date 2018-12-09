@@ -79,7 +79,7 @@ export class DepartamentosComponent implements OnInit {
     const excluir = this.departamento[index];
 
 
-    this.servidor.delete('Departamento', { id: excluir.idDepartamento }).subscribe(data => {
+    this.servidor.delete('Departamento',  excluir.idDepartamento ).subscribe(data => {
       this.modalRef.hide();
       this.departamento.splice(index, 1);
       this.toastr.success('Removido com sucesso');
