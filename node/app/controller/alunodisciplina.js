@@ -9,17 +9,19 @@ module.exports.get = function(app, req, res){
     // var curso = req.query.curso;
 
     auth.verificaAdmin(app,req,res, campoToken, function(campoToken){
-      let id = campoToken.id;
+      let aluno = campoToken.aluno;
+      let disciplina = campoToken.disciplina;
       var universidade = campoToken.universidade;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
       //  genericDAO.read("disciplina",function(error, result){
-        let query = "call buscaDisciplinas("+String(universidade)+")";
-        genericDAO.execute(query,function(error, result){
+      if(aluno == false){
+        genericDAO.find({aluno},"alunodisciplina",function(error, result){
           if(error){
             console.log("erro")
             console.log(error);
+            return res.status(400).send({erro: 1});
           }
           else{
 
@@ -27,6 +29,21 @@ module.exports.get = function(app, req, res){
            return  res.status(200).send(result[0]);
          }
        });
+     }
+     else {
+       genericDAO.find({disciplina},"alunodisciplina",function(error, result){
+         if(error){
+           console.log("erro")
+           console.log(error);
+           return res.status(400).send({erro: 1});
+         }
+         else{
+
+
+          return  res.status(200).send(result[0]);
+        }
+      });
+     }
         connection.end();
 
 
@@ -76,7 +93,7 @@ module.exports.post = function(app,req,res){
 module.exports.delete = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
-    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
+    auth.verificaAdmin(app,req,res, function(campoToken){
       var disciplina = req.header("disciplina");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
