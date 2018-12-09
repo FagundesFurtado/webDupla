@@ -113,6 +113,8 @@ module.exports.put = function(app,req,res){
         if(error){
           console.log("erro")
           console.log(error);
+        } else {
+          res.send({atualizado: 1})
         }
       });
 
