@@ -11,5 +11,6 @@ export class Aluno {
     usuario: string;
     senha: string;
     endereco: string;
+    nomeCurso: string;
 
 }

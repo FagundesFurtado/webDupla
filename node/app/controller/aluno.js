@@ -10,11 +10,11 @@ module.exports.get = function(app, req, res){
 
     auth.verificacao(app,req,res, true, campoToken, function(campoToken){
         let id = campoToken.id;
-      var universidade = campoToken.universidade;
+      var universidade = campoToken.aluno;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
 
-        var query = "select curso.nome as nomeCurso, aluno.* from aluno, curso where curso.idCurso = aluno.curso;";
+        var query = "select curso.nome as nomeCurso, aluno.* from aluno, curso where curso.idCurso = aluno.curso; ";
        genericDAO.execute(query,function(error, result){
          console.log("busca aluno");
          if(error){
@@ -120,7 +120,7 @@ function(campoToken){
 
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
-    auth.verificacao(app,req,res, true, campoToken, function(campoToken){
+    auth.verificacao(app,req,res, true, req.header("Autenticacao"), function(campoToken){
       var requisicao = req.body;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
