@@ -17,7 +17,8 @@ module.exports.get = function(app, req, res){
       var genericDAO = new app.app.models.GenericDAO(connection);
       console.log("peteca");
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
-       genericDAO.find({instituto: universidade},"departamento",function(error, result){
+      var query = "select departamento.*,instituto.nome from departamento,instituto where instituto =",universidade;
+       genericDAO.execute(query,function(error, result){
          console.log("busca departamento");
          if(error){
           console.log("erro")
