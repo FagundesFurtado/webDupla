@@ -62,14 +62,23 @@ export class AlunosComponent implements OnInit {
 
   confirm(): void {
 
-    const numero = this.delete.nome;
+    const numero = this.delete.idAluno;
     const index = this.alunos.map(x => {
-      return x.nome;
+      return x.idAluno;
     }).indexOf(numero);
 
-    this.alunos.splice(index, 1);
-    this.modalRef.hide();
-    this.toastr.success('Removido com sucesso');
+
+    const excluir = this.alunos[index];
+    this.servidor.delete('Aluno',  excluir.idAluno ).subscribe(data => {
+      this.modalRef.hide();
+      this.alunos.splice(index, 1);
+      this.toastr.success('Removido com sucesso');
+      this.router.navigate(['alunos']);
+
+    }, erro => {
+      this.modalRef.hide();
+      this.toastr.error('Servidor indisponível no momento');
+    });
   }
 
   decline(): void {

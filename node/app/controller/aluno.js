@@ -91,7 +91,9 @@ module.exports.post = function(app,req,res){
 module.exports.delete = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
-    auth.verificaAdmin(app,req,res, function(campoToken){
+
+    auth.verificaAdmin(app,req,res,campoToken, function(campoToken){
+
       var aluno = req.header("aluno");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
