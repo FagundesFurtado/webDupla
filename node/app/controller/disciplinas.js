@@ -105,13 +105,14 @@ module.exports.put = function(app,req,res){
     var requisicao = req.body;
     var connection = app.config.dbConnection();
     var genericDAO = new app.app.models.GenericDAO(connection);
-    console.log("update");
+    
     genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
       if(error){
         console.log("erro")
         console.log(error);
+        return res.status(400).send({erro: 1});
       } else {
-        res.send({atualizado: 1})
+        return res.send({atualizado: 1});
       }
     });
 
