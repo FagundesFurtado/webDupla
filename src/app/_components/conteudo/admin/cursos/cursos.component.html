@@ -20,8 +20,8 @@
     <tr *ngFor="let i of (curso | buscar: filter | paginate: config)">
       <td>{{ i.nome }}</td>
       <td>{{ i.area }}</td>
-      <td>{{ i.departamento }}</td>
-      <td>{{ i.professor }}</td>
+      <td>{{ i.nomeDepartamento }}</td>
+      <td>{{ i.nomeProfessor }}</td>
       <td>{{ i.vagas }}</td>
       <td>
           <button type="button" (click)="editar(i)" class="btn btn-outline-primary btn">

@@ -34,7 +34,11 @@ export class EditarAlunosComponent implements OnInit {
   }
 
   finalizarEdicao() {
-    this.servidor.put('Aluno', this.formulario.value).subscribe(data => this.toastr.success('Editado com sucesso'),
+
+    const saida = Object.assign(new Aluno, this.formulario.value);
+    saida.idAluno = this.aluno.idAluno;
+
+    this.servidor.put('Aluno', saida).subscribe(data => this.toastr.success('Editado com sucesso'),
                                                       erro => this.toastr.error('Servidor indisponível no momento'));
   }
 

@@ -45,7 +45,10 @@ export class AlunosComponent implements OnInit {
 
 
   ngOnInit() {
-    this.servidor.get('Aluno').then(lista => this.alunos = lista);
+    this.servidor.get('Aluno').then(lista => {
+        this.alunos = lista;
+        console.log(lista);
+      });
   }
 
   onPageChange(number: number) {

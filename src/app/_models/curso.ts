@@ -5,4 +5,6 @@ export class Curso {
   area: number;
   professor: number;
   vagas: number;
+  nomeDepartamento: string;
+  nomeProfessor: string;
 }

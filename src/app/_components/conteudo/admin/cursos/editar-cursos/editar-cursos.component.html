@@ -13,10 +13,21 @@
       <label class="col-2 col-form-label">Departamento</label>
       <div class="col-10">
         <select required class="form-control" name="departamento" [(ngModel)]="curso.departamento">
+            <option disabled></option>
           <option *ngFor="let item of departamentos"> {{item.nome}}</option>
         </select>
       </div>
     </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Professor</label>
+        <div class="col-10">
+          <select required class="form-control" name="professor" [(ngModel)]="curso.professor">
+            <option disabled></option>
+            <option *ngFor="let item of professores" value="{{item.idProfessor}}"> {{item.nome}}</option>
+          </select>
+        </div>
+      </div>
     <div class="form-group row">
       <label class="col-2 col-form-label">Área</label>
       <div class="col-10">

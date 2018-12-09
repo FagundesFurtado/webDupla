@@ -7,6 +7,7 @@ import { DataService } from '@app/_services/data.service';
 import { ServidorService } from '@app/_services/servidor.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/_services';
+import { Professor } from '@app/_models/professor';
 
 @Component({
   selector: 'app-editar-cursos',
@@ -19,28 +20,35 @@ export class EditarCursosComponent implements OnInit {
 
 
   constructor(private data: DataService, private toastr: ToastrService,
-              private servidor: ServidorService, private auth: AuthenticationService) { }
+              private servidor: ServidorService, private auth: AuthenticationService,
+              private route: Router) { }
 
   curso: Curso;
   departamentos: Departamento[];
+  professores: Professor[];
 
   ngOnInit() {
 
     this.curso = this.data.objeto;
     this.servidor.get('Departamento').then(lista => this.departamentos = lista);
+    this.servidor.get('Professor').then(lista => this.professores = lista);
 
   }
 
 
   finalizarEdicao() {
-    this.servidor.put('Curso', this.formulario.value)
-      .subscribe(data => this.toastr.success('Editado com sucesso'),
+
+    const saida = Object.assign(new Curso, this.formulario.value);
+    saida.idCurso = this.curso.idCurso;
+
+
+    this.servidor.put('Curso', saida)
+      .subscribe(data => {
+        this.toastr.success('Editado com sucesso');
+        this.route.navigate(['cursos']);
+      },
         erro => {
-          if (erro.status === 401) {
-              this.auth.logout();
-          } else {
            this.toastr.error('Servidor indisponível no momento');
-          }
     });
   }
 

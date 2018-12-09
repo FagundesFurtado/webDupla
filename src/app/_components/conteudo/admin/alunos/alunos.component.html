@@ -11,13 +11,19 @@
       <tr>
 
         <th>Nome</th>
-        <th>Area</th>
-        <th>Vagas</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Curso</th>
+        <th>Coordenador</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
       <tr *ngFor="let i of (alunos | buscar: filter | paginate: config)">
         <td>{{ i.nome }}</td>
+        <td>{{ i.telefone }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.curso }}</td>
+        <td>{{ i.coordenador }}</td>
         <td>
           <button type="button" (click)="editar(i)" class="btn btn-outline-primary btn">
               <fa name="edit" ></fa>

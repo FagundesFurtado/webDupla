@@ -7,11 +7,12 @@ import { Aluno } from 'src/app/_models/aluno';
 import decode from 'jwt-decode';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class ServidorService {
 
-  constructor(private http: Http, private route: Router, private httpClient: HttpClient) { }
+  constructor(private http: Http, private route: Router, private auth: AuthenticationService) { }
 
   private site = 'https://smartssa.com.br:3000/';
 
@@ -53,7 +54,10 @@ export class ServidorService {
     const url = this.site + valor;
     console.log('url ', url);
     return this.http.get(url, new RequestOptions({ headers: this.headers() })).toPromise()
-                .then((data) => data.json()).catch( () => this.route.navigate(['login']));
+                .then((data) => {
+                  console.log(data);
+                  return data.json();
+                }).catch(erro => this.verificaPermissao(erro));
 
   }
 
@@ -65,5 +69,10 @@ export class ServidorService {
     return this.http.delete(url,  new RequestOptions({ headers: head })).timeout(3000);
   }
 
+  public verificaPermissao(erro) {
+      if (erro.status === 401) {
+        this.auth.logout();
+      }
+  }
 
 }
