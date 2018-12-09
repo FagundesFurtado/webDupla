@@ -59,14 +59,20 @@ export class ProfessoresComponent implements OnInit {
 
   confirm(): void {
 
-    const numero = this.delete.nome;
+    const numero = this.delete.idProfessor;
     const index = this.professores.map(x => {
-      return x.nome;
+      return x.idProfessor;
     }).indexOf(numero);
 
-    this.professores.splice(index, 1);
-    this.modalRef.hide();
-    this.toastr.success('Removido com sucesso');
+    const excluir = this.professores[index];
+    this.servidor.delete('Professor', excluir.idProfessor).subscribe(data => {
+      this.modalRef.hide();
+      this.professores.splice(index, 1);
+      this.toastr.success('Removido com sucesso');
+    }, erro => {
+      this.modalRef.hide();
+      this.toastr.error('Servidor indisponível no momento');
+    });
   }
 
   decline(): void {

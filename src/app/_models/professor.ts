@@ -5,7 +5,9 @@ export class Professor {
   email: string;
   telefone: string;
   coordenador: boolean;
+  admin: boolean;
   departamento: number;
   departamentoNome: string;
+  endereco: string;
 
 }

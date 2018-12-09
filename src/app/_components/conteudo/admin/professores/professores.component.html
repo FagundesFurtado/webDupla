@@ -13,8 +13,10 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Telefone</th>
+        <th>Endereço</th>
         <th>Departamento</th>
         <th>Coordenador</th>
+        <th>Administrador</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
@@ -22,9 +24,11 @@
         <td>{{ i.nome }}</td>
         <td>{{ i.email }}</td>
         <td>{{ i.telefone }}</td>
-        <td>{{ i.departamento }}</td>
+        <td>{{ i.endereco }}</td>
+        <td>{{ i.departamentoNome }}</td>
+        <td>{{ i.coordenador }}</td>
 
-        <ng-container *ngIf="i.coordenador; else  elseTemplate">
+        <ng-container *ngIf="i.admin; else  elseTemplate">
           <td>Sim</td>
         </ng-container>
         <ng-template #elseTemplate>
