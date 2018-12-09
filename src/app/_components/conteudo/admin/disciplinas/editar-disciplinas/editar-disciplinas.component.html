@@ -24,7 +24,7 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Curso:</label>
       <div class="col-10">
-        <select required class="form-control" name="curso" [(ngModel)]="disciplina.idCurso">
+        <select required class="form-control" name="curso" [(ngModel)]="disciplina.cursow">
 
           <option *ngFor="let item of cursos" value={{item.idCurso}}> {{item.nome}}</option>
         </select>
@@ -47,7 +47,7 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Professor:</label>
       <div class="col-10">
-        <select required class="form-control" name="professor" [(ngModel)]="disciplina.idProfessor">
+        <select required class="form-control" name="professor" [(ngModel)]="disciplina.professor">
           <option *ngFor="let item of professores" value="{{item.idProfessor}}"> {{item.nome}}</option>
         </select>
       </div>
