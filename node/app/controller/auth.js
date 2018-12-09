@@ -48,9 +48,8 @@ module.exports.middleware = function(app,req,res, funcao){
 
 }
 module.exports.verificaAdmin = function(app, req, res, token, funcaoAdmin, funcaoNormal){
-	console.log("token");
-	console.log(token);
-	if(token.admin > 1){
+	console.log(token)
+	if(token.admin >= 1){
 		console.log("é admin OK");
 		funcaoAdmin(token);
 	}

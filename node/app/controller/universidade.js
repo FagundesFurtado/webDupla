@@ -7,17 +7,18 @@ module.exports.get = function (app, req, res) {
 
   */
   auth.middleware(app, req, res, function (campoToken) {
-    auth.verificaAdmin(app, req, res, campoToken, function (campoToken) {
 
-      console.log(campoToken);
+    auth.verificaAdmin(app, req, res, campoToken, function (campoToken) {
+console.log("!!")
+      //console.log(campoToken);
       var id = campoToken.id;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
       var universidade = campoToken.universidade;
 
-      // })
-      // .then( async function(id){
+      console.log("aqui1")
       if (campoToken.admin == 1) {
+        console.log("aqui")
         genericDAO.find({ idInstituto: universidade }, "instituto", function (err, result1) {
 
           if (err) {
@@ -25,7 +26,7 @@ module.exports.get = function (app, req, res) {
             console.log(err);
             return res.status(400).send({ error: 'Falha ao encontrar universidade' });
           } else {
-            res.send(result1);
+            return res.status(200).send(result1);
           }
         });
       }
