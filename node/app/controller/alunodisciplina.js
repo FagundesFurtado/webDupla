@@ -142,7 +142,7 @@ module.exports.put = function(app,req,res){
     let aluno = requisicao.aluno;
     let disciplina = requisicao.disciplina;
     if(aluno == false){
-    genericDAO.update(requisicao, {disciplina: req  genericDAO.update(requisicao, {idDisciplina: requisicao.idDisciplina},"disciplina",function(error, result){
+    genericDAO.update(requisicao, {disciplina: requisicao.disciplina},"disciplina",function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -150,15 +150,8 @@ module.exports.put = function(app,req,res){
         } else {
         return res.send({atualizado: 1});
         }
-      });uisicao.disciplina},"disciplina",function(error, result){
-      if(error){
-        console.log("erro")
-        console.log(error);
-        return res.status(400).send({erro: 1});
-      } else {
-      return res.send({atualizado: 1});
-      }
-    });
+      });
+  
   }else {
     genericDAO.update(requisicao, {aluno: requisicao.aluno},"disciplina",function(error, result){
       if(error){
