@@ -133,7 +133,8 @@ module.exports.delete = function(app,req,res){
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
     var requisicao = req.body;
-    console.log(requisicao.length)
+    console.log("Me manda isso aqui cristiano")
+    console.log(requisicao)
     var connection = app.config.dbConnection();
     var genericDAO = new app.app.models.GenericDAO(connection);
     console.log("update");
