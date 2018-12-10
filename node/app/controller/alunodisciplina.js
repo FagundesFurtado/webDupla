@@ -104,24 +104,12 @@ module.exports.delete = function(app,req,res){
 
   auth.middleware(app,req,res, function(campoToken){
     auth.verificaAdmin(app,req,res, function(campoToken){
-      var aluno = req.header("aluno");
+      var chave = req.header("chave");
       var disciplina = req.header("disciplina");
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
-      if(aluno == false){
-      genericDAO.delete({aluno},"alunodisciplina", function(error, result){
-        if(error){
-          console.log("erro")
-          console.log(error);
-          return res.status(400).send({erro: 1});
-        }
-        else {
-        return res.send({deletado: 1})
-        }
 
-      });
-    }else {
-      genericDAO.delete({disciplina},"alunodisciplina", function(error, result){
+      genericDAO.delete({chave},"alunodisciplina", function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -133,7 +121,6 @@ module.exports.delete = function(app,req,res){
 
       });
 
-    }
 
 
 
@@ -152,7 +139,7 @@ module.exports.put = function(app,req,res){
     let aluno = requisicao.aluno;
     let disciplina = requisicao.disciplina;
     //{aluno: aluno, disciplina: requisicao.disciplina}
-    genericDAO.update(requisicao, "aluno="+String(aluno)+" and disciplina="+String(disciplina),"alunodisciplina",function(error, result){
+    genericDAO.update(requisicao, {chave: requisicao.chave},"alunodisciplina",function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
