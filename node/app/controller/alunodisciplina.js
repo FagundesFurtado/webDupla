@@ -17,7 +17,7 @@ module.exports.get = function(app, req, res){
       var genericDAO = new app.app.models.GenericDAO(connection);
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
       //  genericDAO.read("disciplina",function(error, result){
-      var query = "select *, disciplina.nome as nomeDisciplina from alunodisciplina, disciplina,professor, aluno where disciplina.idDisciplina = alunodisciplina.disciplina and professor.idProfessor ="+String(professor);
+      var query = "select alunodisciplina.*, aluno.nome as nomeAluno, disciplina.nome as disciplinaNome from alunodisciplina, disciplina, aluno, professor where disciplina.idDisciplina = alunodisciplina.disciplina and aluno.idAluno = alunodisciplina.aluno and professor.idProfessor ="+String(professor);
       genericDAO.execute(query, function(err,result){
         if(err){
           console.log("erro professor alunodisciplina");
