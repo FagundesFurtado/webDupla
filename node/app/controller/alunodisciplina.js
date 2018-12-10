@@ -11,39 +11,49 @@ module.exports.get = function(app, req, res){
     auth.verificaAdmin(app,req,res, campoToken, function(campoToken){
       let aluno = campoToken.aluno;
       let disciplina = campoToken.disciplina;
+      let professor = campoToken.professor;
       var universidade = campoToken.universidade;
       var connection = app.config.dbConnection();
       var genericDAO = new app.app.models.GenericDAO(connection);
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
       //  genericDAO.read("disciplina",function(error, result){
-      if(aluno == false){
-        genericDAO.find({aluno},"alunodisciplina",function(error, result){
-          if(error){
-            console.log("erro")
-            console.log(error);
-            return res.status(400).send({erro: 1});
-          }
-          else{
-
-
-           return  res.status(200).send(result[0]);
-         }
-       });
-     }
-     else {
-       genericDAO.find({disciplina},"alunodisciplina",function(error, result){
-         if(error){
-           console.log("erro")
-           console.log(error);
-           return res.status(400).send({erro: 1});
-         }
-         else{
-
-
-          return  res.status(200).send(result[0]);
+      var query = "select * from alunodisciplina, disciplina,professor, aluno where disciplina.idDisciplina = alunodisciplina.disciplina and professor.idProfessor ="+String(professor);
+      genericDAO.execute(query, function(err,result){
+        if(err){
+          console.log("erro professor alunodisciplina");
+          console.log(err);
+          return res.status(400).send({erro: 1});
         }
+        return res.status(200).send(result);
       });
-     }
+     //  if(aluno == false){
+     //    genericDAO.find({aluno},"alunodisciplina",function(error, result){
+     //      if(error){
+     //        console.log("erro")
+     //        console.log(error);
+     //        return res.status(400).send({erro: 1});
+     //      }
+     //      else{
+     //
+     //
+     //       return  res.status(200).send(result[0]);
+     //     }
+     //   });
+     // }
+     // else {
+     //   genericDAO.find({disciplina},"alunodisciplina",function(error, result){
+     //     if(error){
+     //       console.log("erro")
+     //       console.log(error);
+     //       return res.status(400).send({erro: 1});
+     //     }
+     //     else{
+     //
+     //
+     //      return  res.status(200).send(result[0]);
+     //    }
+     //  });
+     // }
         connection.end();
 
 
@@ -151,7 +161,7 @@ module.exports.put = function(app,req,res){
         return res.send({atualizado: 1});
         }
       });
-  
+
   }else {
     genericDAO.update(requisicao, {aluno: requisicao.aluno},"disciplina",function(error, result){
       if(error){
