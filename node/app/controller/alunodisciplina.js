@@ -133,24 +133,30 @@ module.exports.delete = function(app,req,res){
 module.exports.put = function(app,req,res){
   auth.middleware(app,req,res, function(){
     var requisicao = req.body;
+    console.log(requisicao.length)
     var connection = app.config.dbConnection();
     var genericDAO = new app.app.models.GenericDAO(connection);
     console.log("update");
-    let aluno = requisicao.aluno;
-    let disciplina = requisicao.disciplina;
+    var quantidade = 0;
+    for(var i =0; i < requisicao.length;i++){
+    let aluno = requisicao[i].aluno;
+    let disciplina = requisicao[i].disciplina;
     //{aluno: aluno, disciplina: requisicao.disciplina}
-    genericDAO.update(requisicao, {chave: requisicao.chave},"alunodisciplina",function(error, result){
+    genericDAO.update(requisicao[i], {chave: requisicao[i].chave},"alunodisciplina",function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
           return res.status(400).send({erro: 1});
         } else {
-        return res.send({atualizado: 1});
+         //res.send({atualizado: 1});
+         quantidade = quantidade+1;
         }
       });
-
-
+    }
     connection.end();
+      return res.status(200).send({atualizado: 1});
+
+
 
   });
 }
