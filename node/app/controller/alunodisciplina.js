@@ -17,7 +17,7 @@ module.exports.get = function(app, req, res){
       var genericDAO = new app.app.models.GenericDAO(connection);
       //genericDAO.find({curso: curso},"disciplina",function(error, result){
       //  genericDAO.read("disciplina",function(error, result){
-      var query = "select * from alunodisciplina, disciplina,professor, aluno where disciplina.idDisciplina = alunodisciplina.disciplina and professor.idProfessor ="+String(professor);
+      var query = "select *, disciplina.nome as nomeDisciplina from alunodisciplina, disciplina,professor, aluno where disciplina.idDisciplina = alunodisciplina.disciplina and professor.idProfessor ="+String(professor);
       genericDAO.execute(query, function(err,result){
         if(err){
           console.log("erro professor alunodisciplina");
@@ -151,8 +151,8 @@ module.exports.put = function(app,req,res){
     console.log("update");
     let aluno = requisicao.aluno;
     let disciplina = requisicao.disciplina;
-    if(aluno == false){
-    genericDAO.update(requisicao, {disciplina: requisicao.disciplina},"disciplina",function(error, result){
+    //{aluno: aluno, disciplina: requisicao.disciplina}
+    genericDAO.update(requisicao, "aluno="+String(aluno)+" and disciplina="+String(disciplina),"alunodisciplina",function(error, result){
         if(error){
           console.log("erro")
           console.log(error);
@@ -162,17 +162,7 @@ module.exports.put = function(app,req,res){
         }
       });
 
-  }else {
-    genericDAO.update(requisicao, {aluno: requisicao.aluno},"disciplina",function(error, result){
-      if(error){
-        console.log("erro")
-        console.log(error);
-        return res.status(400).send({erro: 1});
-      } else {
-      return res.send({atualizado: 1});
-      }
-    });
-  }
+
     connection.end();
 
   });
