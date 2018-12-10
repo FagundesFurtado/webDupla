@@ -10,13 +10,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of notas">
-        <th>{{i.disciplina}}</th>
-        <td>{{i.prova1}}</td>
-        <td>{{i.prova2}}</td>
+      <tr *ngFor="let i of notas">
+        <th>{{i.disciplinaNome}}</th>
+        <td>{{i.p1}}</td>
+        <td>{{i.p2}}</td>
         <td>{{i.trabalho}}</td>
-        <td>{{i.total}}</td>
-        <td>{{i.situacao}}</td>
+        <td>{{ i.p1 + i.p2 + i.trabalho}}</td>
+        <ng-container *ngIf="i.p1 + i.p2 + i.trabalho >= 6; else elseTemplate">
+            <td> <label> Aprovado </label></td>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <td> <label> Exame Final </label></td>
+          </ng-template>
       </tr>
 
     </tbody>

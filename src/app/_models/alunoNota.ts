@@ -1,14 +1,14 @@
 
 
 export class AlunoNota {
-    nota : number
-    faltas : number   
-    disciplina : string
+    p1: number;
+    p2: number;
+    trabalho: number;
+    disciplina: number;
+    disciplinaNome: string;
+    aluno: number;
+    nomeAluno: string;
+    chave: string;
 
-    constructor(nota, falta, disciplina){
-        this.disciplina = disciplina
-        this.nota = nota
-        this.faltas = falta
-    }
 
 }

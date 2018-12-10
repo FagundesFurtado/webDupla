@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServidorService } from '@app/_services/servidor.service';
+import { AlunoNota } from '@app/_models/alunoNota';
 
 @Component({
   selector: 'app-notas-aluno',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotasAlunoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servidor: ServidorService) { }
 
-  notas: any[];
+  notas: AlunoNota[];
 
   ngOnInit() {
+      this.servidor.get('notaaluno').then( lista => {
+        console.log(lista);
+        this.notas = lista;
+      });
+
   }
 
 }

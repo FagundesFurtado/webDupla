@@ -9,8 +9,9 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Aluno:</label>
       <div class="col-10">
-        <select required class="form-control" name="curso" ngModel>
-          <option *ngFor="let item of alunos"> {{item.nome}}</option>
+        <select required class="form-control" name="aluno" ngModel>
+            <option disabled></option>
+          <option *ngFor="let item of alunos" value="{{item.idAluno}}"> {{item.nome}}</option>
         </select>
       </div>
     </div>
@@ -19,7 +20,8 @@
       <label class="col-2 col-form-label">Disciplina:</label>
       <div class="col-10">
         <select required class="form-control" name="disciplina" ngModel>
-          <option *ngFor="let item of disciplinas"> {{item.nome}}</option>
+            <option disabled></option>
+          <option *ngFor="let item of disciplinas" value={{item.idDisciplina}}> {{item.nome}}</option>
         </select>
       </div>
     </div>
@@ -28,7 +30,7 @@
     <div class="d-flex flex-row-reverse">
       <input type="reset" class="btn btn-outline-danger" value="Resetar">
       <ng-container *ngIf="formulario.valid; else elseTemplate">
-        <input type="submit" class="btn btn-outline-primary" value="Cadastrar">
+        <input type="submit" class="btn btn-outline-primary" value="Matricular">
       </ng-container>
       <ng-template #elseTemplate>
         <input type="submit" disabled class="btn btn-outline-primary" value="Matricular">

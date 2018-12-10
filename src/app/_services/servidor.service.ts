@@ -40,7 +40,7 @@ export class ServidorService {
   }
 
 
-  public put(classe: string, id: any): Observable<any> {
+  public put(classe: any, id: any): Observable<any> {
     const url = this.site + classe;
    return this.http.put(url, id , new RequestOptions({ headers: this.headers()})).timeout(3000);
   }

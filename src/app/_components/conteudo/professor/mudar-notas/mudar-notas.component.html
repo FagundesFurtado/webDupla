@@ -3,45 +3,53 @@
 
     <div class="form-group">
       <label for="sel1">Selecione a disciplina:</label>
-      <select class="form-control" id="sel1">
-        <option>Inteligência Artificial</option>
-        <option>Sistema Distribuído</option>
-        <option>Redes</option>
-        <option>Web 2</option>
+      <select class="form-control" (change)="valor($event.target.value)">
+        <option disabled></option>
+        <option *ngFor="let item of keys"> {{item}}</option>
       </select>
     </div>
   </div>
 
-  <div class="row">  
-      <form #formulario="ngForm" (ngSubmit)="finalizarAtualizacao()">
-
-          <div class="row">
-              <div class="col-4">
-                <label> Aluno </label>
-              </div>
-              <div class="col-4">
-                  <label> Nota </label>
-                </div>
-                <div class="col-4">
-                    <label> Presença </label>
-                  </div>
-                  
-          </div>
+  <div class="row">
+    <form #formulario="ngForm" (ngSubmit)="finalizarAtualizacao()">
 
 
-          <div class="row" *ngFor="let i of alunos">
-              <div class="col-3">
-                <label> {{i.nome}} </label>
-              </div>
-              <div class="col-3">
-                <input class="form-control form-control-sm" type="number"   value="20"  required min=0 pattern="^[0-9]*" ngModel name="nota" >
-              </div>
-              <div class="col-3">
-                  <input class="form-control form-control-sm" type="number" [value]=i.faltas [placeholder]=i.faltas required min=0 pattern="^[0-9]*" ngModel name="falta" >
-               </div>
-          
-            </div>
-      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Prova 1</th>
+            <th>Prova 2</th>
+            <th>Trabalho</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of listaAtual; let pos = index">
+            <td> {{i.nomeAluno}} </td>
+
+            <td> <input type="number" name="{{i.chave + 'p1'}}" required class="form-control" [(ngModel)]="i.p1"></td>
+            <td> <input type="number" name="{{i.chave + 'p2'}}" required class="form-control" [(ngModel)]="i.p2"></td>
+            <td> <input type="number" name="{{i.chave + 'trabalho'}}" required class="form-control" [(ngModel)]="i.trabalho"></td>
+            <ng-container *ngIf="i.p1 + i.p2 + i.trabalho >= 6; else elseTemplate">
+              <td> <label> Aprovado </label></td>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <td> <label> Exame Final </label></td>
+            </ng-template>
+            <td> <input type="hidden" name="{{'chave'+pos}}" required class="form-control" [(ngModel)]="i.chave"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex flex-row-reverse">
+        <ng-container *ngIf="formulario.valid; else elseTemplate">
+          <input type="submit" class="btn btn-outline-primary" value="Salvar">
+        </ng-container>
+        <ng-template #elseTemplate>
+          <input type="submit" disabled class="btn btn-outline-primary" value="Salvar">
+        </ng-template>
+      </div>
+    </form>
   </div>
 
 
