@@ -9,22 +9,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "express-validator": "^5.3.0",
-    "fs": "^0.0.1-security",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "express-validator": "^6.2.0",
+    "fs": "^0.0.2",
     "generic": "^0.1.1",
     "generic-node": "^1.0.3",
     "https": "^1.0.0",
-    "jsonwebtoken": "^8.4.0",
-    "mysql": "^2.16.0",
-    "nodemon": "^1.18.7",
-    "typescript": "^3.1.6",
-    "yarn": "^1.12.3"
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.17.1",
+    "nodemon": "^1.19.2",
+    "typescript": "^3.6.3",
+    "yarn": "^1.17.3"
   }
 }
