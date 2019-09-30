@@ -1,9 +1,7 @@
-Sistema Acadêmico
+# Sistema Acadêmico
 
+Sistema Web utilizando NodeJS e Angular desenvolvido na matéria de **Programação Web 2 e Banco de Dados 2 ** pelo curso **Engenharia de Computação - Instituto Federal do Sul de Minas Gerais Campus Poços de Caldas**
 
-Programação Web 2 - Instituto Federal do Sul de Minas Campus Poços de Caldas
+# Objetivo
 
-
-
-
-Usando NodeJS e Angular Cli 7
+Foi construído um sistema para gerenciar alunos e professores, com notas, disciplinas e painel administrativo.
